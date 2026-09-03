@@ -1,26 +1,256 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand palette (single source of truth) */
+  --bg-base: #0a0a0f;
+  --bg-surface: #121218;
+  --bg-elevated: #1a1a23;
+  --border-subtle: #26262f;
+  --border-hover: #3a3a47;
+  --text-primary: #f4f4f5;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+  --accent: #3b82f6;
+  --accent-hover: #2563eb;
+  --accent-glow: #60a5fa;
+  --accent-secondary: #06b6d4;
+  --success: #10b981;
+  --destructive: #ef4444;
+
+  /* shadcn/ui semantic tokens, mapped onto the brand palette above */
+  --background: var(--bg-base);
+  --foreground: var(--text-primary);
+  --card: var(--bg-surface);
+  --card-foreground: var(--text-primary);
+  --popover: var(--bg-elevated);
+  --popover-foreground: var(--text-primary);
+  --primary: var(--accent);
+  --primary-foreground: #f4f4f5;
+  --secondary: var(--bg-elevated);
+  --secondary-foreground: var(--text-primary);
+  --muted: var(--bg-surface);
+  --muted-foreground: var(--text-muted);
+  --accent-foreground: #f4f4f5;
+  --destructive-foreground: #f4f4f5;
+  --border: var(--border-subtle);
+  --input: var(--border-subtle);
+  --ring: var(--accent);
+  --radius: 0.75rem;
+}
+
+/* This site is dark-first by design; lock color-scheme regardless of OS preference. */
+html {
+  color-scheme: dark;
 }
 
 @theme inline {
+  /* Brand utilities: bg-bg-base, text-text-secondary, border-border-hover, etc. */
+  --color-bg-base: var(--bg-base);
+  --color-bg-surface: var(--bg-surface);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-border: var(--border-subtle);
+  --color-border-hover: var(--border-hover);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-glow: var(--accent-glow);
+  --color-accent-secondary: var(--accent-secondary);
+  --color-success: var(--success);
+
+  /* shadcn/ui utilities: bg-background, bg-card, bg-primary, etc. */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --radius-sm: calc(var(--radius) - 0.25rem);
+  --radius-md: calc(var(--radius) - 0.125rem);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 0.25rem);
+  --radius-2xl: calc(var(--radius) + 0.5rem);
+
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-space-grotesk);
+
+  --animate-fade-up: fade-up 0.5s ease-out forwards;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Decorative keyframes for section visuals — applied via arbitrary animate-[...] utilities. */
+@keyframes orbit-cw {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbit-ccw {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes shimmer-sweep {
+  from {
+    background-position: -200% 0;
+  }
+  to {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes rise-up {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes blob-morph {
+  0%,
+  100% {
+    border-radius: 42% 58% 65% 35% / 45% 40% 60% 55%;
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    border-radius: 58% 42% 35% 65% / 55% 60% 40% 45%;
+    transform: translate(2%, -3%) rotate(6deg);
+  }
+  66% {
+    border-radius: 35% 65% 55% 45% / 40% 35% 65% 60%;
+    transform: translate(-2%, 2%) rotate(-4deg);
+  }
+}
+
+/* Pair with the SVG `pathLength={1}` prop so any path normalizes to a unit length. */
+@keyframes dash-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes scroll-hint {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 1;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-bg-base text-text-primary font-sans antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading text-text-primary tracking-tight;
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    @apply leading-[1.05] font-bold;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    @apply leading-tight font-bold;
+  }
+
+  h3 {
+    @apply text-2xl leading-snug font-semibold;
+  }
+
+  p {
+    @apply text-text-secondary text-base leading-[1.7];
+  }
+
+  ::selection {
+    background-color: color-mix(in oklab, var(--accent) 40%, transparent);
+    color: var(--text-primary);
+  }
+}
+
+/* Decorative CSS animations must not run for users who prefer reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

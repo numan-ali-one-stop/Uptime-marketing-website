@@ -1,0 +1,78 @@
+"use client";
+
+import * as React from "react";
+import Link from "next/link";
+
+import { CTAButton } from "@/components/ui/cta-button";
+import { navLinks } from "@/lib/nav-links";
+import { cn } from "@/lib/utils";
+
+import { MobileNav } from "./mobile-nav";
+import { ServicesMegaMenu } from "./services-mega-menu";
+
+const SCROLL_THRESHOLD = 20;
+
+function Header() {
+  const [scrolled, setScrolled] = React.useState(false);
+
+  React.useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > SCROLL_THRESHOLD);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const secondaryLinks = navLinks.filter((link) => link.href !== "/");
+
+  return (
+    <header
+      className={cn(
+        "sticky top-0 z-50 h-20 transition-[background-color,backdrop-filter,border-color] duration-300",
+        scrolled
+          ? "border-border bg-bg-base/80 border-b backdrop-blur-xl"
+          : "border-b border-transparent bg-transparent"
+      )}
+    >
+      <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-6 lg:px-8">
+        <Link
+          href="/"
+          className="font-heading text-text-primary text-lg font-bold tracking-wide uppercase"
+        >
+          Uptime Marketing
+        </Link>
+
+        <nav className="hidden items-center gap-8 lg:flex" aria-label="Main">
+          <Link
+            href="/"
+            className="text-text-secondary hover:text-text-primary text-sm font-medium transition-colors"
+          >
+            Home
+          </Link>
+          <ServicesMegaMenu />
+          {secondaryLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-text-secondary hover:text-text-primary text-sm font-medium transition-colors"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+
+        <div className="flex items-center gap-2">
+          <CTAButton
+            asChild
+            variant="primary"
+            className="hidden lg:inline-flex"
+          >
+            <Link href="/contact">Get Started</Link>
+          </CTAButton>
+          <MobileNav />
+        </div>
+      </div>
+    </header>
+  );
+}
+
+export { Header };

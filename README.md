@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Uptime Marketing
 
-## Getting Started
+Marketing website for **Uptime Marketing** — a technology and digital growth agency. Built with Next.js 15+ (App Router), React 19, TypeScript, Tailwind CSS v4, and shadcn/ui.
 
-First, run the development server:
+## Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- [Next.js](https://nextjs.org) (App Router, `src/` directory)
+- [React 19](https://react.dev)
+- TypeScript (strict mode)
+- [Tailwind CSS v4](https://tailwindcss.com) (CSS-first config via `@theme` in `globals.css`)
+- [shadcn/ui](https://ui.shadcn.com) (New York style)
+- [Motion](https://motion.dev) (`motion/react`) for scroll/hover animation
+- [lucide-react](https://lucide.dev) for icons
+- `next/font` (Inter + Space Grotesk)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Local Setup
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Install dependencies:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   ```bash
+   npm install
+   ```
 
-## Learn More
+2. Copy the environment template and fill in real values:
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   cp .env.example .env.local
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. Run the dev server:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   ```bash
+   npm run dev
+   ```
 
-## Deploy on Vercel
+   Open [http://localhost:3000](http://localhost:3000).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Scripts
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Script           | Description                      |
+| ---------------- | -------------------------------- |
+| `npm run dev`    | Start the local dev server       |
+| `npm run build`  | Production build                 |
+| `npm run start`  | Serve the production build       |
+| `npm run lint`   | Run ESLint                       |
+| `npm run format` | Format the project with Prettier |
+
+## Environment Variables
+
+| Variable                      | Description                                               |
+| ----------------------------- | --------------------------------------------------------- |
+| `NEXT_PUBLIC_SITE_URL`        | Canonical site URL, used for metadata and OpenGraph tags  |
+| `NEXT_PUBLIC_GA_ID`           | Google Analytics 4 measurement ID                         |
+| `RESEND_API_KEY`              | API key used to send contact form emails via Resend       |
+| `CONTACT_EMAIL_TO`            | Inbox that receives contact form submissions              |
+| `NEXT_PUBLIC_WHATSAPP_NUMBER` | WhatsApp number (digits only) used to build `wa.me` links |
+
+## Deploying to Vercel
+
+1. Push this repository to GitHub/GitLab/Bitbucket.
+2. Import the project into [Vercel](https://vercel.com/new).
+3. Add the environment variables listed above in the Vercel project settings (Production, Preview, and Development as needed).
+4. Deploy — `vercel.json` already configures the framework preset, security headers, and clean URLs.
+
+## Project Structure
+
+- `src/app` — routes (App Router)
+- `src/components/ui` — shadcn/ui components + shared design-system primitives
+- `src/components/layout` — header, footer, and navigation
+- `src/data` — typed content/data layer (services taxonomy, site config)
+- `src/types` — shared TypeScript types
+- `src/lib` — utilities, fonts, icon map
