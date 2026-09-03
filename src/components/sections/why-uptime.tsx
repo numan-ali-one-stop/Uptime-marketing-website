@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
 
-const VALUES = [
+export const WHY_UPTIME_VALUES = [
   {
     icon: Wrench,
     title: "Custom Solutions",
@@ -43,7 +43,7 @@ function WhyUptime() {
       />
 
       <AnimatedGroup className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-        {VALUES.map((value) => (
+        {WHY_UPTIME_VALUES.map((value) => (
           <Card key={value.title} className="p-6">
             <value.icon className="text-accent size-8" aria-hidden="true" />
             <h3 className="font-heading text-text-primary mt-4 text-sm font-semibold tracking-[0.1em] uppercase">

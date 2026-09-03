@@ -35,7 +35,7 @@ import {
   XIcon,
 } from "@/components/icons/brand-icons";
 
-type IconComponent = React.ComponentType<React.SVGProps<SVGSVGElement>>;
+export type IconComponent = React.ComponentType<React.SVGProps<SVGSVGElement>>;
 
 export const iconMap: Record<string, IconComponent> = {
   Smartphone,
