@@ -6,7 +6,7 @@ export const siteConfig: SiteConfig = {
   tagline: "Development, AI & Growth for Ambitious Brands",
   description:
     "Uptime Marketing is a technology and digital growth agency building web and mobile products, AI solutions, and full-funnel marketing for ambitious brands.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.uptimemarketing.com",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.uptimemarketing.com",
   // TODO: replace with real inbox
   email: "hello@uptimemarketing.com",
   // TODO: replace with real phone number
