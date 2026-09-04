@@ -2,12 +2,13 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 import { AnimatedGroup } from "@/components/ui/animated-group";
-import { Card } from "@/components/ui/card";
 import { CTAButton } from "@/components/ui/cta-button";
 import { Section } from "@/components/ui/section";
 import type { ServiceCategory } from "@/types/services";
 import { getIcon, type IconComponent } from "@/lib/icons";
 import { cn } from "@/lib/utils";
+
+import { SubServiceCard } from "./sub-service-card";
 
 type ServiceCategoryBlockProps = {
   category: ServiceCategory;
@@ -54,33 +55,14 @@ function ServiceCategoryBlock({
             reverse && "lg:order-1"
           )}
         >
-          {category.subServices.map((subService) => {
-            const SubIcon = getIcon(subService.icon);
-            return (
-              <Link
-                key={subService.slug}
-                href={`/services/${category.slug}/${subService.slug}`}
-                className="group"
-              >
-                <Card className="h-full p-5">
-                  <SubIcon className="text-accent size-6" aria-hidden="true" />
-                  <h3 className="font-heading text-text-primary mt-1 text-sm font-semibold">
-                    {subService.title}
-                  </h3>
-                  <p className="text-text-secondary text-sm">
-                    {subService.shortDescription}
-                  </p>
-                  <span className="text-accent mt-auto flex items-center gap-1.5 pt-1 text-sm font-medium">
-                    Learn more
-                    <ArrowRight
-                      className="size-4 transition-transform duration-200 group-hover:translate-x-1"
-                      aria-hidden="true"
-                    />
-                  </span>
-                </Card>
-              </Link>
-            );
-          })}
+          {category.subServices.map((subService) => (
+            <SubServiceCard
+              key={subService.slug}
+              categorySlug={category.slug}
+              subService={subService}
+              icon={getIcon(subService.icon)}
+            />
+          ))}
         </div>
       </AnimatedGroup>
     </Section>

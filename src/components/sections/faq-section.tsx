@@ -7,17 +7,27 @@ import {
 import { AnimatedGroup } from "@/components/ui/animated-group";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { faqs } from "@/data/faqs";
+import { faqs as siteFaqs } from "@/data/faqs";
+import { cn } from "@/lib/utils";
+import type { Faq } from "@/types/faqs";
 
-function FaqSection() {
+type FaqSectionProps = {
+  faqs?: Faq[];
+  eyebrow?: string;
+  title?: string;
+  className?: string;
+};
+
+function FaqSection({
+  faqs = siteFaqs,
+  eyebrow = "FAQ",
+  title = "Frequently Asked Questions",
+  className,
+}: FaqSectionProps) {
   return (
-    <Section className="bg-bg-base">
+    <Section className={cn("bg-bg-base", className)}>
       <AnimatedGroup className="flex flex-col items-center">
-        <SectionHeading
-          eyebrow="FAQ"
-          title="Frequently Asked Questions"
-          align="center"
-        />
+        <SectionHeading eyebrow={eyebrow} title={title} align="center" />
 
         <Accordion type="single" collapsible className="mt-12 w-full max-w-3xl">
           {faqs.map((faq, i) => (

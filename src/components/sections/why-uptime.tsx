@@ -44,13 +44,15 @@ function WhyUptime() {
 
       <AnimatedGroup className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
         {WHY_UPTIME_VALUES.map((value) => (
-          <Card key={value.title} className="p-6">
-            <value.icon className="text-accent size-8" aria-hidden="true" />
-            <h3 className="font-heading text-text-primary mt-4 text-sm font-semibold tracking-[0.1em] uppercase">
-              {value.title}
-            </h3>
-            <p className="mt-2 text-sm">{value.description}</p>
-          </Card>
+          <div key={value.title}>
+            <Card className="p-6">
+              <value.icon className="text-accent size-8" aria-hidden="true" />
+              <h3 className="font-heading text-text-primary mt-4 text-sm font-semibold tracking-[0.1em] uppercase">
+                {value.title}
+              </h3>
+              <p className="mt-2 text-sm">{value.description}</p>
+            </Card>
+          </div>
         ))}
       </AnimatedGroup>
     </Section>

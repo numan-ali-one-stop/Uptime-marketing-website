@@ -71,7 +71,7 @@ export default function ServicesPage() {
       />
 
       <Section
-        className="bg-bg-base relative flex items-center overflow-hidden py-16 md:py-20"
+        className="bg-bg-base relative flex items-center overflow-hidden pt-8 pb-16 md:pt-10 md:pb-20"
         containerClassName="relative w-full"
       >
         <div

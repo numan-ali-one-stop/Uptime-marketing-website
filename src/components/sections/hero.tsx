@@ -11,7 +11,7 @@ import { HeroVisual } from "./visuals/hero-visual";
 function Hero() {
   return (
     <Section
-      className="bg-bg-base relative flex min-h-[90vh] items-center overflow-hidden"
+      className="bg-bg-base relative flex items-center overflow-hidden pt-12 pb-24 md:pt-16 md:pb-32 lg:pt-20 lg:pb-40"
       containerClassName="relative w-full"
     >
       <div
