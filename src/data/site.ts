@@ -16,6 +16,8 @@ export const siteConfig: SiteConfig = {
   whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "15551234567",
   // TODO: replace with real business address
   address: "123 Market Street, Suite 400, San Francisco, CA 94103",
+  // TODO: replace with real business hours and timezone
+  businessHours: "Monday – Friday, 9:00 AM – 6:00 PM (EST)",
   social: [
     // TODO: replace with real social profile URLs
     {

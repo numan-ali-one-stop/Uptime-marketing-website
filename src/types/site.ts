@@ -15,5 +15,6 @@ export type SiteConfig = {
   phoneDisplay: string;
   whatsappNumber: string;
   address: string;
+  businessHours: string;
   social: SocialLink[];
 };
