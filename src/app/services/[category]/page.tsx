@@ -10,6 +10,8 @@ import { CategoryTools } from "@/components/sections/category-tools";
 import { FaqSection } from "@/components/sections/faq-section";
 import { FinalCtaSection } from "@/components/sections/final-cta-section";
 import { ProcessTimeline } from "@/components/sections/process-timeline";
+import { TrackPageView } from "@/components/analytics/track-page-view";
+import { JsonLd } from "@/components/seo/json-ld";
 import { AnimatedGroup } from "@/components/ui/animated-group";
 import { CTAButton } from "@/components/ui/cta-button";
 import { GradientText } from "@/components/ui/gradient-text";
@@ -17,9 +19,30 @@ import { Section } from "@/components/ui/section";
 import { getServiceCategory, serviceCategories } from "@/data/services";
 import { siteConfig } from "@/data/site";
 import { getIcon, type IconComponent } from "@/lib/icons";
+import {
+  breadcrumbSchema,
+  faqSchema,
+  offersFromCategory,
+  serviceSchema,
+} from "@/lib/schema";
 
 type ServiceCategoryPageProps = {
   params: Promise<{ category: string }>;
+};
+
+// Dedicated 150-160 char meta descriptions per category — heroSubheadline is
+// tuned for on-page display copy, not search-result length constraints.
+const CATEGORY_META_DESCRIPTIONS: Record<string, string> = {
+  development:
+    "Uptime Marketing builds custom web apps, mobile apps and software platforms engineered for real-world performance, reliability and long-term business growth.",
+  "ai-solutions":
+    "Uptime Marketing designs and ships AI agents, business automation and custom AI solutions that save time, cut costs and scale reliably with your operations.",
+  "seo-search":
+    "Uptime Marketing improves search visibility with technical SEO, Google Business Profile optimization, indexing fixes, AEO and GEO for AI-driven search results.",
+  "digital-marketing":
+    "Uptime Marketing runs full-funnel digital marketing — social media management, paid advertising and campaign strategy built to grow qualified customer demand.",
+  "design-creative":
+    "Uptime Marketing crafts logos, graphics and UI/UX design that give your brand a distinct, professional identity across every customer touchpoint online.",
 };
 
 // Resolved once at module load (not during render) so rendering a category's
@@ -42,7 +65,8 @@ export async function generateMetadata({
     return { title: "Services" };
   }
 
-  const description = category.heroSubheadline;
+  const description =
+    CATEGORY_META_DESCRIPTIONS[category.slug] ?? category.heroSubheadline;
   const url = `${siteConfig.url}/services/${category.slug}`;
 
   return {
@@ -70,79 +94,27 @@ export default async function ServiceCategoryPage({
   const Icon = categoryIcons[category.slug];
   const categoryUrl = `${siteConfig.url}/services/${category.slug}`;
 
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.url },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Services",
-        item: `${siteConfig.url}/services`,
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        name: category.title,
-        item: categoryUrl,
-      },
-    ],
-  };
-
-  const serviceSchema = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    name: category.title,
-    description: category.description,
-    serviceType: category.title,
-    url: categoryUrl,
-    provider: {
-      "@type": "Organization",
-      name: siteConfig.name,
-      url: siteConfig.url,
-    },
-    hasOfferCatalog: {
-      "@type": "OfferCatalog",
-      name: `${category.title} Services`,
-      itemListElement: category.subServices.map((subService) => ({
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: subService.title,
-          description: subService.shortDescription,
-          url: `${categoryUrl}/${subService.slug}`,
-        },
-      })),
-    },
-  };
-
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: category.faqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.answer,
-      },
-    })),
-  };
-
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      <TrackPageView
+        eventName="service_page_view"
+        params={{ category: category.slug }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      <JsonLd
+        schema={[
+          breadcrumbSchema([
+            { name: "Home", url: siteConfig.url },
+            { name: "Services", url: `${siteConfig.url}/services` },
+            { name: category.title, url: categoryUrl },
+          ]),
+          serviceSchema({
+            name: category.title,
+            description: category.description,
+            url: categoryUrl,
+            offers: offersFromCategory(category, categoryUrl),
+          }),
+          faqSchema(category.faqs),
+        ]}
       />
 
       <Section
@@ -198,10 +170,18 @@ export default async function ServiceCategoryPage({
           <p className="max-w-2xl text-lg">{category.heroSubheadline}</p>
 
           <div className="flex flex-wrap items-center gap-4 pt-2">
-            <CTAButton asChild variant="primary">
+            <CTAButton
+              asChild
+              variant="primary"
+              trackingLabel={`${category.title} Hero — Get a Free Consultation`}
+            >
               <Link href="/contact">Get a Free Consultation</Link>
             </CTAButton>
-            <CTAButton asChild variant="secondary">
+            <CTAButton
+              asChild
+              variant="secondary"
+              trackingLabel={`${category.title} Hero — View Our Work`}
+            >
               <Link href="/portfolio">View Our Work</Link>
             </CTAButton>
           </div>

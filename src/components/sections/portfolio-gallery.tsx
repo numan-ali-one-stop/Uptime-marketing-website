@@ -1,13 +1,22 @@
 "use client";
 
 import * as React from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import dynamic from "next/dynamic";
 
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { ProjectImage } from "@/components/ui/project-image";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { cn } from "@/lib/utils";
+
+// The lightbox (Radix Dialog + keyboard nav) renders nothing until a visitor
+// clicks a thumbnail, so it's split into its own chunk and skipped during
+// SSR entirely — no reason to ship or hydrate it for the common case where
+// nobody opens it.
+const PortfolioLightbox = dynamic(
+  () =>
+    import("./portfolio-lightbox").then((mod) => mod.PortfolioLightbox),
+  { ssr: false }
+);
 
 type PortfolioGalleryProps = {
   images: string[];
@@ -32,18 +41,6 @@ function PortfolioGallery({
     [images.length]
   );
 
-  React.useEffect(() => {
-    if (openIndex === null) return;
-
-    function onKeyDown(event: KeyboardEvent) {
-      if (event.key === "ArrowRight") goTo(1);
-      if (event.key === "ArrowLeft") goTo(-1);
-    }
-
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [openIndex, goTo]);
-
   if (images.length === 0) return null;
 
   return (
@@ -61,7 +58,7 @@ function PortfolioGallery({
             key={index}
             type="button"
             onClick={() => setOpenIndex(index)}
-            className="group focus-visible:ring-ring/50 relative aspect-video overflow-hidden rounded-xl focus-visible:ring-[3px] focus-visible:outline-none"
+            className="group focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent relative aspect-video overflow-hidden rounded-xl outline-none"
             aria-label={`Open image ${index + 1} of ${images.length} from the ${projectTitle} gallery`}
           >
             <ProjectImage
@@ -75,55 +72,15 @@ function PortfolioGallery({
         ))}
       </div>
 
-      <Dialog
-        open={openIndex !== null}
-        onOpenChange={(open) => !open && setOpenIndex(null)}
-      >
-        <DialogContent
-          className="max-w-3xl border-none bg-transparent p-0 shadow-none sm:max-w-3xl"
-          showCloseButton
-        >
-          <DialogTitle className="sr-only">
-            {projectTitle} gallery image{" "}
-            {openIndex !== null ? openIndex + 1 : ""} of {images.length}
-          </DialogTitle>
-
-          <div className="relative aspect-video w-full overflow-hidden rounded-2xl">
-            {openIndex !== null ? (
-              <ProjectImage
-                src={images[openIndex]}
-                alt={`${projectTitle} — gallery image ${openIndex + 1}`}
-                index={openIndex}
-                sizes="100vw"
-              />
-            ) : null}
-          </div>
-
-          {images.length > 1 ? (
-            <div className="flex items-center justify-between px-1">
-              <button
-                type="button"
-                onClick={() => goTo(-1)}
-                aria-label="Previous image"
-                className="flex size-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
-              >
-                <ChevronLeft className="size-5" aria-hidden="true" />
-              </button>
-              <span className="text-sm text-white/80">
-                {openIndex !== null ? openIndex + 1 : 0} / {images.length}
-              </span>
-              <button
-                type="button"
-                onClick={() => goTo(1)}
-                aria-label="Next image"
-                className="flex size-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
-              >
-                <ChevronRight className="size-5" aria-hidden="true" />
-              </button>
-            </div>
-          ) : null}
-        </DialogContent>
-      </Dialog>
+      {openIndex !== null ? (
+        <PortfolioLightbox
+          images={images}
+          projectTitle={projectTitle}
+          openIndex={openIndex}
+          onOpenChange={(open) => !open && setOpenIndex(null)}
+          onNavigate={goTo}
+        />
+      ) : null}
     </Section>
   );
 }

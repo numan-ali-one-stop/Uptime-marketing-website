@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { ContactForm } from "@/components/sections/contact-form";
+import { ContactFormLoader } from "@/components/sections/contact-form-loader";
 import { ContactInfo } from "@/components/sections/contact-info";
 import { ContactMap } from "@/components/sections/contact-map";
 import { FaqSection } from "@/components/sections/faq-section";
 import { FinalCtaSection } from "@/components/sections/final-cta-section";
+import { JsonLd } from "@/components/seo/json-ld";
 import { AnimatedGroup } from "@/components/ui/animated-group";
 import { GradientText } from "@/components/ui/gradient-text";
 import { Section } from "@/components/ui/section";
 import { siteConfig } from "@/data/site";
+import { breadcrumbSchema, organizationSchema } from "@/lib/schema";
 import type { Faq } from "@/types/faqs";
 
 const description =
@@ -18,29 +20,17 @@ const description =
 export const metadata: Metadata = {
   title: "Contact Us",
   description,
+  alternates: { canonical: `${siteConfig.url}/contact` },
   openGraph: {
     title: `Contact Us | ${siteConfig.name}`,
     description,
     url: `${siteConfig.url}/contact`,
+    images: ["/opengraph-image"],
   },
   twitter: {
     title: `Contact Us | ${siteConfig.name}`,
     description,
   },
-};
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.url },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: "Contact Us",
-      item: `${siteConfig.url}/contact`,
-    },
-  ],
 };
 
 const contactPageSchema = {
@@ -49,25 +39,6 @@ const contactPageSchema = {
   name: "Contact Us",
   description,
   url: `${siteConfig.url}/contact`,
-};
-
-const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: siteConfig.name,
-  url: siteConfig.url,
-  logo: `${siteConfig.url}/favicon.ico`,
-  contactPoint: [
-    {
-      "@type": "ContactPoint",
-      contactType: "customer service",
-      email: siteConfig.email,
-      telephone: siteConfig.phone,
-      areaServed: "Worldwide",
-      availableLanguage: "English",
-    },
-  ],
-  sameAs: siteConfig.social.map((social) => social.href),
 };
 
 const CONTACT_FAQS: Faq[] = [
@@ -96,17 +67,15 @@ const CONTACT_FAQS: Faq[] = [
 export default function ContactPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactPageSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      <JsonLd
+        schema={[
+          breadcrumbSchema([
+            { name: "Home", url: siteConfig.url },
+            { name: "Contact Us", url: `${siteConfig.url}/contact` },
+          ]),
+          contactPageSchema,
+          organizationSchema(),
+        ]}
       />
 
       <Section
@@ -159,7 +128,7 @@ export default function ContactPage() {
             <p className="mt-2 mb-8 text-base">
               Fill out the form and we&apos;ll get back to you shortly.
             </p>
-            <ContactForm />
+            <ContactFormLoader />
           </div>
 
           <div>

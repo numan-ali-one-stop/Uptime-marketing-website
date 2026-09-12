@@ -16,6 +16,8 @@ type ProjectImageProps = {
   label?: string;
   index?: number;
   className?: string;
+  /** Set true only for the single above-the-fold hero usage (e.g. the portfolio detail hero image). */
+  priority?: boolean;
 };
 
 /**
@@ -32,6 +34,7 @@ function ProjectImage({
   label,
   index,
   className,
+  priority = false,
 }: ProjectImageProps) {
   if (!src) {
     return <GradientPlaceholder className={className} label={label} index={index} />;
@@ -43,6 +46,8 @@ function ProjectImage({
       alt={alt}
       fill
       sizes={sizes}
+      priority={priority}
+      loading={priority ? undefined : "lazy"}
       placeholder="blur"
       blurDataURL={BLUR_DATA_URL}
       className={cn("object-cover", className)}

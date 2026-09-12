@@ -12,13 +12,25 @@
   --border-hover: #3a3a47;
   --text-primary: #f4f4f5;
   --text-secondary: #a1a1aa;
-  --text-muted: #71717a;
+  /* #9494a0 (was #71717a — 3.6-4.1:1, failed WCAG AA for normal-size text
+     used at text-xs sizes throughout the site). Passes 4.5:1+ against every
+     surface token below. */
+  --text-muted: #9494a0;
   --accent: #3b82f6;
   --accent-hover: #2563eb;
   --accent-glow: #60a5fa;
   --accent-secondary: #06b6d4;
   --success: #10b981;
   --destructive: #ef4444;
+
+  /* Deeper variants of accent/accent-secondary, used only behind white
+     button text: the base --accent/--accent-secondary pair contrasts well
+     as text/icon color on dark backgrounds (5.4:1 / 8.1:1) but fails WCAG
+     AA (2.4-3.7:1) for white text sitting on top of them as a fill. These
+     keep the same blue-to-cyan direction at a luminance where white text
+     clears 4.5:1 across the whole gradient. */
+  --accent-button-start: #1d4ed8;
+  --accent-button-end: #0e7490;
 
   /* shadcn/ui semantic tokens, mapped onto the brand palette above */
   --background: var(--bg-base);

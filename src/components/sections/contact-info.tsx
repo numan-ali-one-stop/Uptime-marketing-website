@@ -74,7 +74,7 @@ function ContactInfo() {
                       ? "noopener noreferrer"
                       : undefined
                   }
-                  className="focus-visible:ring-ring/50 block h-full rounded-2xl focus-visible:ring-[3px] focus-visible:outline-none"
+                  className="focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent block h-full rounded-2xl outline-none"
                 >
                   <Card className="h-full p-5">{cardBody}</Card>
                 </Link>
@@ -96,7 +96,7 @@ function ContactInfo() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={social.label}
-              className="border-border text-text-secondary hover:border-accent hover:text-accent focus-visible:ring-ring/50 flex size-10 items-center justify-center rounded-full border transition-colors focus-visible:ring-[3px] focus-visible:outline-none"
+              className="border-border text-text-secondary hover:border-accent hover:text-accent focus-visible:outline-solid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent flex size-10 items-center justify-center rounded-full border transition-colors outline-none"
             >
               <Icon className="size-4" aria-hidden="true" />
             </Link>

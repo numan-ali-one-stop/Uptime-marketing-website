@@ -2,8 +2,10 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import { CTAButton } from "@/components/ui/cta-button";
+import { siteConfig } from "@/data/site";
 import { navLinks } from "@/lib/nav-links";
 import { cn } from "@/lib/utils";
 
@@ -14,6 +16,7 @@ const SCROLL_THRESHOLD = 20;
 
 function Header() {
   const [scrolled, setScrolled] = React.useState(false);
+  const pathname = usePathname();
 
   React.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > SCROLL_THRESHOLD);
@@ -38,26 +41,41 @@ function Header() {
           href="/"
           className="font-heading text-text-primary text-lg font-bold tracking-wide uppercase"
         >
-          Uptime Marketing
+          {siteConfig.name}
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex" aria-label="Main">
           <Link
             href="/"
-            className="text-text-secondary hover:text-text-primary text-sm font-medium transition-colors"
+            aria-current={pathname === "/" ? "page" : undefined}
+            className={cn(
+              "text-sm font-medium transition-colors",
+              pathname === "/"
+                ? "text-text-primary"
+                : "text-text-secondary hover:text-text-primary"
+            )}
           >
             Home
           </Link>
           <ServicesMegaMenu />
-          {secondaryLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-text-secondary hover:text-text-primary text-sm font-medium transition-colors"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {secondaryLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                aria-current={isActive ? "page" : undefined}
+                className={cn(
+                  "text-sm font-medium transition-colors",
+                  isActive
+                    ? "text-text-primary"
+                    : "text-text-secondary hover:text-text-primary"
+                )}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-2">

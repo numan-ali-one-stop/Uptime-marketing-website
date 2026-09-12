@@ -12,6 +12,8 @@ import { ServiceDetailIncluded } from "@/components/sections/service-detail-incl
 import { ServiceDetailIntro } from "@/components/sections/service-detail-intro";
 import { ServiceDetailRelated } from "@/components/sections/service-detail-related";
 import { ServiceDetailWhyItMatters } from "@/components/sections/service-detail-why-it-matters";
+import { TrackPageView } from "@/components/analytics/track-page-view";
+import { JsonLd } from "@/components/seo/json-ld";
 import { AnimatedGroup } from "@/components/ui/animated-group";
 import { CTAButton } from "@/components/ui/cta-button";
 import { Section } from "@/components/ui/section";
@@ -22,6 +24,7 @@ import {
   serviceCategories,
 } from "@/data/services";
 import { siteConfig } from "@/data/site";
+import { breadcrumbSchema, faqSchema, serviceSchema } from "@/lib/schema";
 
 type ServiceDetailPageProps = {
   params: Promise<{ category: string; service: string }>;
@@ -75,73 +78,30 @@ export default async function ServiceDetailPage({
 
   const serviceUrl = `${siteConfig.url}/services/${category.slug}/${detail.slug}`;
 
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.url },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Services",
-        item: `${siteConfig.url}/services`,
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        name: category.title,
-        item: `${siteConfig.url}/services/${category.slug}`,
-      },
-      {
-        "@type": "ListItem",
-        position: 4,
-        name: detail.title,
-        item: serviceUrl,
-      },
-    ],
-  };
-
-  const serviceSchema = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    name: detail.title,
-    description: detail.metaDescription,
-    serviceType: detail.title,
-    areaServed: "Worldwide",
-    url: serviceUrl,
-    provider: {
-      "@type": "Organization",
-      name: siteConfig.name,
-      url: siteConfig.url,
-    },
-  };
-
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: detail.faqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.answer,
-      },
-    })),
-  };
-
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      <TrackPageView
+        eventName="service_page_view"
+        params={{ category: category.slug, service: detail.slug }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      <JsonLd
+        schema={[
+          breadcrumbSchema([
+            { name: "Home", url: siteConfig.url },
+            { name: "Services", url: `${siteConfig.url}/services` },
+            {
+              name: category.title,
+              url: `${siteConfig.url}/services/${category.slug}`,
+            },
+            { name: detail.title, url: serviceUrl },
+          ]),
+          serviceSchema({
+            name: detail.title,
+            description: detail.metaDescription,
+            url: serviceUrl,
+          }),
+          faqSchema(detail.faqs),
+        ]}
       />
 
       <Section
@@ -197,10 +157,18 @@ export default async function ServiceDetailPage({
           <p className="max-w-2xl text-lg">{detail.heroSubheadline}</p>
 
           <div className="flex flex-wrap items-center gap-4 pt-2">
-            <CTAButton asChild variant="primary">
+            <CTAButton
+              asChild
+              variant="primary"
+              trackingLabel={`${detail.title} Hero — Get a Free Consultation`}
+            >
               <Link href="/contact">Get a Free Consultation</Link>
             </CTAButton>
-            <CTAButton asChild variant="secondary">
+            <CTAButton
+              asChild
+              variant="secondary"
+              trackingLabel={`${detail.title} Hero — View Our Work`}
+            >
               <Link href="/portfolio">View Our Work</Link>
             </CTAButton>
           </div>

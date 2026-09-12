@@ -28,7 +28,7 @@ function Footer() {
               href="/"
               className="font-heading text-text-primary text-lg font-bold tracking-wide uppercase"
             >
-              Uptime Marketing
+              {siteConfig.name}
             </Link>
             <p className="text-text-secondary max-w-xs text-sm">
               {siteConfig.description}

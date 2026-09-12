@@ -6,43 +6,27 @@ import { FinalCtaSection } from "@/components/sections/final-cta-section";
 import { ProcessSection } from "@/components/sections/process-section";
 import { ServiceCategoryBlock } from "@/components/sections/service-category-block";
 import { ServicesWhyStrip } from "@/components/sections/services-why-strip";
+import { JsonLd } from "@/components/seo/json-ld";
 import { AnimatedGroup } from "@/components/ui/animated-group";
 import { GradientText } from "@/components/ui/gradient-text";
 import { Section } from "@/components/ui/section";
 import { serviceCategories } from "@/data/services";
 import { siteConfig } from "@/data/site";
 import { getIcon } from "@/lib/icons";
+import { breadcrumbSchema } from "@/lib/schema";
 
 const description =
-  "Explore Uptime Marketing's services: web & mobile development, AI solutions, SEO & search, digital marketing and design — all under one roof.";
+  "Explore Uptime Marketing's full range of services: web and mobile development, AI solutions, SEO and search, digital marketing and design — all under one roof.";
 
 export const metadata: Metadata = {
   title: "Our Services",
   description,
+  alternates: { canonical: `${siteConfig.url}/services` },
   openGraph: {
     title: `Our Services | ${siteConfig.name}`,
     description,
     url: `${siteConfig.url}/services`,
   },
-};
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    {
-      "@type": "ListItem",
-      position: 1,
-      name: "Home",
-      item: siteConfig.url,
-    },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: "Services",
-      item: `${siteConfig.url}/services`,
-    },
-  ],
 };
 
 const categoryListSchema = {
@@ -59,15 +43,14 @@ const categoryListSchema = {
 export default function ServicesPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(categoryListSchema),
-        }}
+      <JsonLd
+        schema={[
+          breadcrumbSchema([
+            { name: "Home", url: siteConfig.url },
+            { name: "Services", url: `${siteConfig.url}/services` },
+          ]),
+          categoryListSchema,
+        ]}
       />
 
       <Section

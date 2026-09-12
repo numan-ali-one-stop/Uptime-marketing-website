@@ -7,12 +7,14 @@ import { PortfolioGallery } from "@/components/sections/portfolio-gallery";
 import { PortfolioNextProject } from "@/components/sections/portfolio-next-project";
 import { PortfolioOverviewBar } from "@/components/sections/portfolio-overview-bar";
 import { PortfolioResults } from "@/components/sections/portfolio-results";
+import { JsonLd } from "@/components/seo/json-ld";
 import { AnimatedGroup } from "@/components/ui/animated-group";
 import { Badge } from "@/components/ui/badge";
 import { ProjectImage } from "@/components/ui/project-image";
 import { Section } from "@/components/ui/section";
 import { getProject, projects } from "@/data/projects";
 import { siteConfig } from "@/data/site";
+import { breadcrumbSchema, creativeWorkSchema } from "@/lib/schema";
 
 type PortfolioDetailPageProps = {
   params: Promise<{ slug: string }>;
@@ -36,11 +38,11 @@ export async function generateMetadata({
 
   return {
     title: project.title,
-    description: project.excerpt,
+    description: project.metaDescription,
     alternates: { canonical: url },
     openGraph: {
       title: `${project.title} | ${siteConfig.name}`,
-      description: project.excerpt,
+      description: project.metaDescription,
       url,
     },
   };
@@ -60,50 +62,17 @@ export default async function PortfolioDetailPage({
   const nextProject = projects[(currentIndex + 1) % projects.length];
   const projectUrl = `${siteConfig.url}/portfolio/${project.slug}`;
 
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.url },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Our Work",
-        item: `${siteConfig.url}/portfolio`,
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        name: project.title,
-        item: projectUrl,
-      },
-    ],
-  };
-
-  const caseStudySchema = {
-    "@context": "https://schema.org",
-    "@type": "CreativeWork",
-    name: project.title,
-    description: project.excerpt,
-    dateCreated: String(project.year),
-    keywords: project.techStack.join(", "),
-    url: projectUrl,
-    creator: {
-      "@type": "Organization",
-      name: siteConfig.name,
-      url: siteConfig.url,
-    },
-  };
-
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(caseStudySchema) }}
+      <JsonLd
+        schema={[
+          breadcrumbSchema([
+            { name: "Home", url: siteConfig.url },
+            { name: "Our Work", url: `${siteConfig.url}/portfolio` },
+            { name: project.title, url: projectUrl },
+          ]),
+          creativeWorkSchema(project),
+        ]}
       />
 
       <Section
@@ -156,6 +125,7 @@ export default async function PortfolioDetailPage({
               alt={project.title}
               label={project.title}
               sizes="100vw"
+              priority
             />
           </div>
         </AnimatedGroup>

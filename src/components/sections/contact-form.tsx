@@ -21,6 +21,7 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { serviceCategories } from "@/data/services";
 import { siteConfig } from "@/data/site";
+import { trackEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 import {
   BUDGET_OPTIONS,
@@ -112,6 +113,7 @@ function ContactForm() {
       }
 
       toast.success("Message sent — we'll be in touch soon.");
+      trackEvent("contact_form_submit", { service: values.service });
       setIsSuccess(true);
     } catch (error) {
       const message =
@@ -194,7 +196,11 @@ function ContactForm() {
             {...register("fullName")}
           />
           {errors.fullName ? (
-            <p id="fullName-error" className="text-destructive text-sm">
+            <p
+              id="fullName-error"
+              role="alert"
+              className="text-destructive text-sm"
+            >
               {errors.fullName.message}
             </p>
           ) : null}
@@ -211,7 +217,11 @@ function ContactForm() {
             {...register("email")}
           />
           {errors.email ? (
-            <p id="email-error" className="text-destructive text-sm">
+            <p
+              id="email-error"
+              role="alert"
+              className="text-destructive text-sm"
+            >
               {errors.email.message}
             </p>
           ) : null}
@@ -231,7 +241,11 @@ function ContactForm() {
             {...register("phone")}
           />
           {errors.phone ? (
-            <p id="phone-error" className="text-destructive text-sm">
+            <p
+              id="phone-error"
+              role="alert"
+              className="text-destructive text-sm"
+            >
               {errors.phone.message}
             </p>
           ) : null}
@@ -250,7 +264,11 @@ function ContactForm() {
             {...register("company")}
           />
           {errors.company ? (
-            <p id="company-error" className="text-destructive text-sm">
+            <p
+              id="company-error"
+              role="alert"
+              className="text-destructive text-sm"
+            >
               {errors.company.message}
             </p>
           ) : null}
@@ -292,7 +310,11 @@ function ContactForm() {
             )}
           />
           {errors.service ? (
-            <p id="service-error" className="text-destructive text-sm">
+            <p
+              id="service-error"
+              role="alert"
+              className="text-destructive text-sm"
+            >
               {errors.service.message}
             </p>
           ) : null}
@@ -312,9 +334,7 @@ function ContactForm() {
                   id="budget"
                   className="w-full"
                   aria-invalid={!!errors.budget}
-                  aria-describedby={
-                    errors.budget ? "budget-error" : undefined
-                  }
+                  aria-describedby={errors.budget ? "budget-error" : undefined}
                 >
                   <SelectValue placeholder="Select a range" />
                 </SelectTrigger>
@@ -329,7 +349,11 @@ function ContactForm() {
             )}
           />
           {errors.budget ? (
-            <p id="budget-error" className="text-destructive text-sm">
+            <p
+              id="budget-error"
+              role="alert"
+              className="text-destructive text-sm"
+            >
               {errors.budget.message}
             </p>
           ) : null}
@@ -362,7 +386,11 @@ function ContactForm() {
           {...register("projectDetails")}
         />
         {errors.projectDetails ? (
-          <p id="projectDetails-error" className="text-destructive text-sm">
+          <p
+            id="projectDetails-error"
+            role="alert"
+            className="text-destructive text-sm"
+          >
             {errors.projectDetails.message}
           </p>
         ) : (

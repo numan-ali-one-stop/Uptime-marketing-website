@@ -4,10 +4,12 @@ import { Suspense } from "react";
 
 import { FinalCtaSection } from "@/components/sections/final-cta-section";
 import { PortfolioFilterGrid } from "@/components/sections/portfolio-filter-grid";
+import { JsonLd } from "@/components/seo/json-ld";
 import { AnimatedGroup } from "@/components/ui/animated-group";
 import { GradientText } from "@/components/ui/gradient-text";
 import { Section } from "@/components/ui/section";
 import { siteConfig } from "@/data/site";
+import { breadcrumbSchema } from "@/lib/schema";
 
 const description =
   "See how UPTIME MARKETING has helped businesses grow through web and mobile development, AI, SEO, digital marketing and design — real projects, real results.";
@@ -15,6 +17,7 @@ const description =
 export const metadata: Metadata = {
   title: "Our Work",
   description,
+  alternates: { canonical: `${siteConfig.url}/portfolio` },
   openGraph: {
     title: `Our Work | ${siteConfig.name}`,
     description,
@@ -22,26 +25,14 @@ export const metadata: Metadata = {
   },
 };
 
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.url },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: "Our Work",
-      item: `${siteConfig.url}/portfolio`,
-    },
-  ],
-};
-
 export default function PortfolioPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      <JsonLd
+        schema={breadcrumbSchema([
+          { name: "Home", url: siteConfig.url },
+          { name: "Our Work", url: `${siteConfig.url}/portfolio` },
+        ])}
       />
 
       <Section

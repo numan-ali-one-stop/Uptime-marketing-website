@@ -10,11 +10,13 @@ import { AboutWhatWeDo } from "@/components/sections/about-what-we-do";
 import { AboutWhyChooseUs } from "@/components/sections/about-why-choose-us";
 import { FinalCtaSection } from "@/components/sections/final-cta-section";
 import { ProcessSection } from "@/components/sections/process-section";
+import { JsonLd } from "@/components/seo/json-ld";
 import { AnimatedGroup } from "@/components/ui/animated-group";
 import { GradientText } from "@/components/ui/gradient-text";
 import { Section } from "@/components/ui/section";
 import { companyInfo } from "@/data/company";
 import { siteConfig } from "@/data/site";
+import { breadcrumbSchema, organizationSchema } from "@/lib/schema";
 
 const description =
   "UPTIME MARKETING is a technology and digital growth agency serving businesses locally and internationally across development, AI, SEO, marketing and design.";
@@ -22,25 +24,13 @@ const description =
 export const metadata: Metadata = {
   title: "About Us",
   description,
+  alternates: { canonical: `${siteConfig.url}/about` },
   openGraph: {
     title: `About Us | ${siteConfig.name}`,
     description,
     url: `${siteConfig.url}/about`,
+    images: ["/opengraph-image"],
   },
-};
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    { "@type": "ListItem", position: 1, name: "Home", item: siteConfig.url },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: "About Us",
-      item: `${siteConfig.url}/about`,
-    },
-  ],
 };
 
 const aboutPageSchema = {
@@ -51,12 +41,8 @@ const aboutPageSchema = {
   url: `${siteConfig.url}/about`,
 };
 
-const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: siteConfig.name,
-  url: siteConfig.url,
-  description: siteConfig.description,
+const aboutOrganizationSchema = {
+  ...organizationSchema(),
   foundingDate: String(companyInfo.foundedYear),
   founder: {
     "@type": "Person",
@@ -68,23 +54,20 @@ const organizationSchema = {
     name: member.name,
     jobTitle: member.role,
   })),
-  sameAs: siteConfig.social.map((social) => social.href),
 };
 
 export default function AboutPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutPageSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      <JsonLd
+        schema={[
+          breadcrumbSchema([
+            { name: "Home", url: siteConfig.url },
+            { name: "About Us", url: `${siteConfig.url}/about` },
+          ]),
+          aboutPageSchema,
+          aboutOrganizationSchema,
+        ]}
       />
 
       <Section

@@ -20,6 +20,8 @@ export const projects: Project[] = [
     heroImage: "",
     excerpt:
       "A headless e-commerce rebuild that unified inventory across 40+ stores.",
+    metaDescription:
+      "Uptime Marketing rebuilt Northwind Retail as a headless e-commerce platform, unifying inventory across 40+ stores and lifting checkout conversion by 62%.",
     challenge:
       "Northwind Retail was running on a legacy e-commerce platform that couldn't keep inventory in sync across more than 40 physical stores and its online storefront. Customers regularly saw items as in-stock that had already sold out locally, and checkout was slow enough that a meaningful share of shoppers abandoned their cart before finishing a purchase.",
     solution:
@@ -55,6 +57,8 @@ export const projects: Project[] = [
     heroImage: "",
     excerpt:
       "A cross-platform fitness app that turned a spreadsheet-based coaching business into a subscription product.",
+    metaDescription:
+      "Uptime Marketing built Meridian Fitness a cross-platform app turning spreadsheet-based coaching into a subscription product with 92% monthly retention.",
     challenge:
       "Meridian Fitness was coaching clients through a mix of spreadsheets, email check-ins and a generic scheduling tool that didn't reflect their brand or their coaching method. Growth was capped by how many clients a coach could manage manually, and there was no way to package the coaching model into a scalable product.",
     solution:
@@ -89,6 +93,8 @@ export const projects: Project[] = [
     heroImage: "",
     excerpt:
       "An AI support agent that triages and resolves tickets before they reach a human.",
+    metaDescription:
+      "Uptime Marketing built Cadence an AI support agent that resolves 71% of tickets autonomously, cutting first response time by 64% for its SaaS support team.",
     challenge:
       "Cadence's support team was drowning in repetitive tickets — password resets, billing questions, basic feature walkthroughs — that ate up hours every day and delayed the more complex cases that actually needed a human. Response times were slipping as the customer base grew faster than the support team.",
     solution:
@@ -119,6 +125,8 @@ export const projects: Project[] = [
     heroImage: "",
     excerpt:
       "A technical SEO overhaul and content strategy for a regional logistics brand.",
+    metaDescription:
+      "Uptime Marketing ran a technical SEO overhaul for Harborline Logistics, tripling organic traffic and ranking 128 more keywords in the top 10 in 6 months.",
     challenge:
       "Harborline Logistics had a functional website that was nearly invisible in search — thin content, unresolved crawl errors, and years of technical debt meant they were losing quotes to competitors who simply ranked higher for the exact services Harborline already offered.",
     solution:
@@ -150,6 +158,8 @@ export const projects: Project[] = [
     heroImage: "",
     excerpt:
       "A full-funnel paid and social strategy that turned a seasonal spike into steady year-round demand.",
+    metaDescription:
+      "Uptime Marketing built Brightleaf Home Goods a full-funnel marketing strategy that grew return on ad spend by 147% and cut cost per acquisition by 31%.",
     challenge:
       "Brightleaf Home Goods only saw meaningful sales during a few seasonal spikes each year, with paid ads running in isolation from their social presence and no consistent way to bring lapsed customers back. Ad spend was going up faster than revenue.",
     solution:
@@ -185,6 +195,8 @@ export const projects: Project[] = [
     heroImage: "",
     excerpt:
       "A full brand identity and UI refresh for a wellness studio expanding into three new locations.",
+    metaDescription:
+      "Uptime Marketing designed a full brand identity and app UI refresh for Solace Wellness ahead of a 3-location expansion, lifting app booking completion 44%.",
     challenge:
       "Solace Wellness had outgrown its original DIY logo and inconsistent visual identity right as it prepared to open three new studio locations. Nothing about the brand — from the logo to the booking app — looked like it belonged to the same business, which undercut the premium positioning they wanted for the expansion.",
     solution:

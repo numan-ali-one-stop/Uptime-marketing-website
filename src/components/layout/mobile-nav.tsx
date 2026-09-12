@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
 
 import {
@@ -20,11 +21,13 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { serviceCategories } from "@/data/services";
+import { siteConfig } from "@/data/site";
 import { getIcon } from "@/lib/icons";
 import { navLinks } from "@/lib/nav-links";
 
 function MobileNav() {
   const [open, setOpen] = React.useState(false);
+  const pathname = usePathname();
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -44,7 +47,7 @@ function MobileNav() {
       >
         <SheetHeader className="border-border border-b">
           <SheetTitle className="font-heading text-text-primary text-lg tracking-wide uppercase">
-            Uptime Marketing
+            {siteConfig.name}
           </SheetTitle>
         </SheetHeader>
 
@@ -54,6 +57,7 @@ function MobileNav() {
               <Link
                 href="/"
                 onClick={() => setOpen(false)}
+                aria-current={pathname === "/" ? "page" : undefined}
                 className="text-text-primary hover:bg-bg-surface block rounded-lg px-2 py-3 text-base font-medium"
               >
                 Home
@@ -103,6 +107,7 @@ function MobileNav() {
                   <Link
                     href={link.href}
                     onClick={() => setOpen(false)}
+                    aria-current={pathname === link.href ? "page" : undefined}
                     className="text-text-primary hover:bg-bg-surface block rounded-lg px-2 py-3 text-base font-medium"
                   >
                     {link.label}

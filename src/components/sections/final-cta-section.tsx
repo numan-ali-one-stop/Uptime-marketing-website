@@ -28,10 +28,14 @@ function FinalCtaSection({
           <h2>{heading}</h2>
           <p className="max-w-xl text-base">{body}</p>
           <div className="mt-4 flex flex-wrap items-center justify-center gap-4">
-            <CTAButton asChild variant="primary">
+            <CTAButton asChild variant="primary" trackingLabel={primaryLabel}>
               <Link href={primaryHref}>{primaryLabel}</Link>
             </CTAButton>
-            <CTAButton asChild variant="secondary">
+            <CTAButton
+              asChild
+              variant="secondary"
+              trackingLabel={secondaryLabel}
+            >
               <Link href={secondaryHref}>{secondaryLabel}</Link>
             </CTAButton>
           </div>

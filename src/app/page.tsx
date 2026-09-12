@@ -13,8 +13,14 @@ import { SeoSection } from "@/components/sections/seo-section";
 import { ServicesOverview } from "@/components/sections/services-overview";
 import { TestimonialsSection } from "@/components/sections/testimonials-section";
 import { WhyUptime } from "@/components/sections/why-uptime";
+import { JsonLd } from "@/components/seo/json-ld";
 import { faqs } from "@/data/faqs";
 import { siteConfig } from "@/data/site";
+import {
+  faqSchema,
+  organizationSchema,
+  websiteSchema,
+} from "@/lib/schema";
 
 const description =
   "Uptime Marketing builds web and mobile products, AI solutions, and full-funnel digital marketing that help ambitious businesses compete and grow online.";
@@ -22,6 +28,7 @@ const description =
 export const metadata: Metadata = {
   title: "Technology & Digital Growth Agency",
   description,
+  alternates: { canonical: siteConfig.url },
   openGraph: {
     title: `${siteConfig.name} | Technology & Digital Growth Agency`,
     description,
@@ -29,40 +36,11 @@ export const metadata: Metadata = {
   },
 };
 
-const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: siteConfig.name,
-  url: siteConfig.url,
-  logo: `${siteConfig.url}/favicon.ico`,
-  description: siteConfig.description,
-  email: siteConfig.email,
-  sameAs: siteConfig.social.map((social) => social.href),
-};
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: faqs.map((faq) => ({
-    "@type": "Question",
-    name: faq.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: faq.answer,
-    },
-  })),
-};
-
 export default function HomePage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      <JsonLd
+        schema={[organizationSchema(), websiteSchema(), faqSchema(faqs)]}
       />
 
       <Hero />

@@ -130,7 +130,7 @@ function PortfolioFilterGrid() {
                       <Badge variant="secondary" className="w-fit">
                         {project.category}
                       </Badge>
-                      <h3 className="text-lg">{project.title}</h3>
+                      <h2 className="text-lg">{project.title}</h2>
                       <p className="text-accent text-sm">
                         {project.results[0].metric} {project.results[0].label}
                       </p>

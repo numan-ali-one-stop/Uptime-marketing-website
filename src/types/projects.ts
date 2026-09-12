@@ -29,6 +29,8 @@ export type Project = {
   /** Empty string until a real asset exists — renders a gradient placeholder. */
   heroImage: string;
   excerpt: string;
+  /** 150-160 char search-result description; distinct from the shorter on-page excerpt. */
+  metaDescription: string;
   challenge: string;
   solution: string;
   results: [ProjectResult, ProjectResult, ProjectResult];
