@@ -1,214 +1,75 @@
 import type { Project } from "@/types/projects";
 
 /**
- * PLACEHOLDER CONTENT — every project below is a fictional case study
- * standing in for real client work. Replace with actual projects, results
- * and testimonials before launch. Thumbnails, hero images and gallery
- * entries are empty strings and render as gradient placeholders until real
- * project media is ready; `liveUrl` values use the IANA-reserved
- * example.com domain and must be replaced with real URLs.
+ * Real client projects only. `results` on these are facts stated on the sites
+ * themselves (`resultsAreFacts`), not measured outcomes; drop that flag when
+ * adding results you've actually measured. Images are screenshots of the live
+ * sites in /public/images/portfolio.
  */
 export const projects: Project[] = [
   {
-    slug: "northwind-retail-platform",
-    title: "Northwind Retail Platform",
-    client: "Northwind Retail",
+    slug: "one-stop-tyres-247",
+    title: "One Stop Tyres 24/7",
+    client: "One Stop Tyres 24/7",
     category: "Web Development",
-    industry: "E-Commerce & Retail",
-    year: 2024,
-    thumbnail: "",
-    heroImage: "",
+    industry: "Automotive & Mobile Tyre Services",
+    thumbnail: "/images/portfolio/onestop-hero.jpg",
+    heroImage: "/images/portfolio/onestop-hero.jpg",
+    heroAlt: "One Stop Tyres 24/7 homepage with a coverage map of Greater Manchester",
     excerpt:
-      "A headless e-commerce rebuild that unified inventory across 40+ stores.",
+      "A lead-focused website for a 24/7 mobile tyre service, with instant quotes and local pages across Greater Manchester.",
     metaDescription:
-      "Uptime Marketing rebuilt Northwind Retail as a headless e-commerce platform, unifying inventory across 40+ stores and lifting checkout conversion by 62%.",
+      "See the website Uptime Marketing built for One Stop Tyres 24/7, a mobile tyre service with instant quotes and local pages across Greater Manchester.",
     challenge:
-      "Northwind Retail was running on a legacy e-commerce platform that couldn't keep inventory in sync across more than 40 physical stores and its online storefront. Customers regularly saw items as in-stock that had already sold out locally, and checkout was slow enough that a meaningful share of shoppers abandoned their cart before finishing a purchase.",
+      "A driver with a flat tyre needs help now, and is usually searching on a phone at the side of the road. One Stop Tyres 24/7 needed a website that makes it immediately clear they come out day or night, shows whether they cover the driver's area, and makes getting help or a price as quick as possible.",
     solution:
-      "We rebuilt the storefront as a headless e-commerce platform on Next.js, backed by a unified inventory API that syncs stock levels across every store location in real time. The new checkout flow was rebuilt from scratch around speed and clarity, cutting the steps required to complete a purchase and optimizing every page for fast load times.",
+      "We built a Next.js website around getting in touch: call and WhatsApp buttons sit at the top of the page, and an instant quote form collects the vehicle registration, tyre size and postcode, with the price sent back on WhatsApp. Each service has its own page, from mobile tyre fitting and puncture repair to jump starts and TPMS resets. Local pages and a coverage map take in towns across all ten Greater Manchester boroughs, and a blog and FAQ answer the questions drivers ask most.",
     results: [
-      { metric: "+62%", label: "Checkout Conversion" },
-      { metric: "1.8s", label: "Average Page Load" },
-      { metric: "40+", label: "Store Locations Unified" },
+      { metric: "230+", label: "Towns Covered" },
+      { metric: "10", label: "Boroughs Served" },
+      { metric: "7", label: "Tyre & Roadside Services" },
     ],
-    servicesUsed: [
-      "web-app-development",
-      "custom-software-development",
-      "ui-ux-design",
+    resultsAreFacts: true,
+    servicesUsed: ["web-app-development", "seo", "ui-ux-design"],
+    techStack: ["Next.js", "React", "Vercel"],
+    gallery: [
+      "/images/portfolio/onestop-about.jpg",
+      "/images/portfolio/onestop-services.jpg",
+      "/images/portfolio/onestop-process.jpg",
     ],
-    techStack: ["Next.js", "React", "Node.js", "PostgreSQL", "AWS"],
-    gallery: ["", "", "", ""],
-    testimonial: {
-      quote:
-        "Uptime rebuilt our platform and our checkout flow in under three months. The team moved fast without cutting corners on quality.",
-      name: "Jordan Blake",
-      role: "VP of Engineering",
-    },
-    liveUrl: "https://northwindretail.example.com",
+    liveUrl: "https://onestoptyres247.co.uk/",
   },
   {
-    slug: "meridian-fitness-app",
-    title: "Meridian Fitness App",
-    client: "Meridian Fitness",
-    category: "Mobile App",
-    industry: "Health & Fitness",
-    year: 2024,
-    thumbnail: "",
-    heroImage: "",
+    slug: "road-heroes-247",
+    title: "Road Heroes 247",
+    client: "Road Heroes 247 LTD",
+    category: "Web Development",
+    industry: "Automotive & Mobile Tyre Services",
+    thumbnail: "/images/portfolio/roadheroes-hero.jpg",
+    heroImage: "/images/portfolio/roadheroes-hero.jpg",
+    heroAlt: "Road Heroes 247 homepage showing a mobile tyre fitting job at night",
     excerpt:
-      "A cross-platform fitness app that turned a spreadsheet-based coaching business into a subscription product.",
+      "A clean, trustworthy website for an emergency mobile tyre fitter serving homes, workplaces and roadsides across Greater Manchester.",
     metaDescription:
-      "Uptime Marketing built Meridian Fitness a cross-platform app turning spreadsheet-based coaching into a subscription product with 92% monthly retention.",
+      "See the website Uptime Marketing built for Road Heroes 247, an emergency mobile tyre fitter serving homes, workplaces and roadsides in Greater Manchester.",
     challenge:
-      "Meridian Fitness was coaching clients through a mix of spreadsheets, email check-ins and a generic scheduling tool that didn't reflect their brand or their coaching method. Growth was capped by how many clients a coach could manage manually, and there was no way to package the coaching model into a scalable product.",
+      "Drivers stuck with a flat, damaged or blown tyre need to know quickly who can reach them, what happens next, and whether they can trust the business turning up. Road Heroes 247 needed a website that answers those questions clearly and gets people calling, without overpromising on a safety-critical service.",
     solution:
-      "We designed and built a cross-platform mobile app covering workout plans, progress tracking and in-app messaging with a coach, all wrapped in a subscription model. The app shares a single backend across iOS and Android, so coaches manage every client from one dashboard instead of juggling separate tools.",
+      "We built a Next.js website that puts a call button front and centre and explains the service in plain language: a simple four-step process, clear pricing expectations and honest repair advice. Dedicated pages cover mobile tyre fitting, home tyre fitting, jump starts and locking nut removal, with local pages for the boroughs served. A gallery of real jobs builds trust, and motorway guidance tells drivers to reach a safe location before calling.",
     results: [
-      { metric: "4.8", label: "Average App Store Rating" },
-      { metric: "3x", label: "Clients Per Coach" },
-      { metric: "92%", label: "Monthly Retention" },
+      { metric: "24/7", label: "Emergency Availability" },
+      { metric: "10", label: "Primary Service Areas" },
+      { metric: "9", label: "Major Routes Covered" },
     ],
-    servicesUsed: [
-      "mobile-app-development",
-      "ui-ux-design",
-      "custom-software-development",
+    resultsAreFacts: true,
+    servicesUsed: ["web-app-development", "seo", "ui-ux-design"],
+    techStack: ["Next.js", "React", "Vercel"],
+    gallery: [
+      "/images/portfolio/roadheroes-services.jpg",
+      "/images/portfolio/roadheroes-steps.jpg",
+      "/images/portfolio/roadheroes-gallery.jpg",
     ],
-    techStack: ["React Native", "Node.js", "PostgreSQL", "Firebase"],
-    gallery: ["", "", "", "", ""],
-    testimonial: {
-      quote:
-        "Our coaches manage three times as many clients without it feeling impersonal. The app feels like it was actually designed for how we coach, not a generic template.",
-      name: "Elena Marsh",
-      role: "Founder",
-    },
-  },
-  {
-    slug: "cadence-support-ai-agent",
-    title: "Cadence Support Agent",
-    client: "Cadence",
-    category: "AI",
-    industry: "SaaS",
-    year: 2025,
-    thumbnail: "",
-    heroImage: "",
-    excerpt:
-      "An AI support agent that triages and resolves tickets before they reach a human.",
-    metaDescription:
-      "Uptime Marketing built Cadence an AI support agent that resolves 71% of tickets autonomously, cutting first response time by 64% for its SaaS support team.",
-    challenge:
-      "Cadence's support team was drowning in repetitive tickets — password resets, billing questions, basic feature walkthroughs — that ate up hours every day and delayed the more complex cases that actually needed a human. Response times were slipping as the customer base grew faster than the support team.",
-    solution:
-      "We built an AI support agent trained on Cadence's own documentation and ticket history, wired directly into their helpdesk. The agent resolves common requests autonomously, gathers context on complex tickets before handoff, and escalates anything ambiguous to a human with a full summary attached instead of starting from scratch.",
-    results: [
-      { metric: "71%", label: "Tickets Resolved Autonomously" },
-      { metric: "-64%", label: "Average First Response Time" },
-      { metric: "24/7", label: "Support Coverage" },
-    ],
-    servicesUsed: ["ai-agents", "ai-development", "business-automation"],
-    techStack: ["OpenAI", "LangChain", "Python", "AWS"],
-    gallery: ["", "", "", ""],
-    testimonial: {
-      quote:
-        "The AI support agent they built now resolves the majority of our tickets without a human touching them. It paid for itself in weeks.",
-      name: "Marcus Ade",
-      role: "Director of Customer Success",
-    },
-  },
-  {
-    slug: "harborline-logistics-seo",
-    title: "Harborline Logistics",
-    client: "Harborline Logistics",
-    category: "SEO",
-    industry: "Logistics & Freight",
-    year: 2024,
-    thumbnail: "",
-    heroImage: "",
-    excerpt:
-      "A technical SEO overhaul and content strategy for a regional logistics brand.",
-    metaDescription:
-      "Uptime Marketing ran a technical SEO overhaul for Harborline Logistics, tripling organic traffic and ranking 128 more keywords in the top 10 in 6 months.",
-    challenge:
-      "Harborline Logistics had a functional website that was nearly invisible in search — thin content, unresolved crawl errors, and years of technical debt meant they were losing quotes to competitors who simply ranked higher for the exact services Harborline already offered.",
-    solution:
-      "We ran a full technical SEO audit, fixed the crawlability and indexation issues holding the site back, and built a content strategy around the specific freight and logistics services their customers were actually searching for. Ongoing optimization and monthly reporting kept the momentum going quarter over quarter.",
-    results: [
-      { metric: "3.4x", label: "Organic Traffic in 6 Months" },
-      { metric: "+128", label: "Keywords in Top 10" },
-      { metric: "+58%", label: "Quote Requests from Organic" },
-    ],
-    servicesUsed: ["seo", "website-indexing", "google-search-console"],
-    techStack: ["Google Search Console", "GA4", "Ahrefs", "Screaming Frog"],
-    gallery: ["", "", ""],
-    testimonial: {
-      quote:
-        "Our organic traffic tripled within two quarters. What stood out was how clearly they connected technical SEO work to actual revenue.",
-      name: "Priya Nandan",
-      role: "Head of Marketing",
-    },
-    liveUrl: "https://harborlinelogistics.example.com",
-  },
-  {
-    slug: "brightleaf-home-goods-growth",
-    title: "Brightleaf Home Goods Growth Campaign",
-    client: "Brightleaf Home Goods",
-    category: "Digital Marketing",
-    industry: "Retail & Consumer Goods",
-    year: 2025,
-    thumbnail: "",
-    heroImage: "",
-    excerpt:
-      "A full-funnel paid and social strategy that turned a seasonal spike into steady year-round demand.",
-    metaDescription:
-      "Uptime Marketing built Brightleaf Home Goods a full-funnel marketing strategy that grew return on ad spend by 147% and cut cost per acquisition by 31%.",
-    challenge:
-      "Brightleaf Home Goods only saw meaningful sales during a few seasonal spikes each year, with paid ads running in isolation from their social presence and no consistent way to bring lapsed customers back. Ad spend was going up faster than revenue.",
-    solution:
-      "We rebuilt the paid media strategy around full-funnel targeting — prospecting, retargeting and lifecycle campaigns for past customers — and coordinated it with a consistent organic and paid social calendar so every channel reinforced the same seasonal campaigns instead of running independently.",
-    results: [
-      { metric: "+147%", label: "Return on Ad Spend" },
-      { metric: "+83%", label: "Repeat Purchase Rate" },
-      { metric: "-31%", label: "Cost Per Acquisition" },
-    ],
-    servicesUsed: [
-      "digital-marketing",
-      "digital-advertising",
-      "social-media-marketing",
-    ],
-    techStack: ["Meta Ads", "Google Ads", "GA4", "HubSpot"],
-    gallery: ["", "", "", ""],
-    testimonial: {
-      quote:
-        "They turned our biggest weakness — inconsistent demand outside our busy season — into steady, predictable growth all year.",
-      name: "Devon Okafor",
-      role: "Co-Founder",
-    },
-    liveUrl: "https://brightleafhome.example.com",
-  },
-  {
-    slug: "solace-wellness-rebrand",
-    title: "Solace Wellness Rebrand",
-    client: "Solace Wellness",
-    category: "Design",
-    industry: "Health & Wellness",
-    year: 2025,
-    thumbnail: "",
-    heroImage: "",
-    excerpt:
-      "A full brand identity and UI refresh for a wellness studio expanding into three new locations.",
-    metaDescription:
-      "Uptime Marketing designed a full brand identity and app UI refresh for Solace Wellness ahead of a 3-location expansion, lifting app booking completion 44%.",
-    challenge:
-      "Solace Wellness had outgrown its original DIY logo and inconsistent visual identity right as it prepared to open three new studio locations. Nothing about the brand — from the logo to the booking app — looked like it belonged to the same business, which undercut the premium positioning they wanted for the expansion.",
-    solution:
-      "We designed a complete brand identity system — logo, color palette, typography and brand guidelines — then extended it into a redesigned booking app interface, so every touchpoint from signage to the app felt like one cohesive, premium brand ready to scale across locations.",
-    results: [
-      { metric: "3", label: "New Locations Launched" },
-      { metric: "+44%", label: "App Booking Completion" },
-      { metric: "100%", label: "Brand Consistency Across Locations" },
-    ],
-    servicesUsed: ["logo-design", "graphic-design", "ui-ux-design"],
-    techStack: ["Figma", "Adobe Illustrator", "Adobe Photoshop"],
-    gallery: ["", "", "", "", ""],
+    liveUrl: "https://road-heros-247.vercel.app/",
   },
 ];
 

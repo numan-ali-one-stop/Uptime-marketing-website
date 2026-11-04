@@ -26,8 +26,8 @@ function ServiceDetailIntro({
 
   return (
     <Section className={cn("bg-bg-base", className)}>
-      <AnimatedGroup className="grid grid-cols-1 items-start gap-12 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
-        <div className="flex flex-col gap-5">
+      <AnimatedGroup className="grid grid-cols-1 items-start gap-8 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
+        <div className="flex min-w-0 flex-col gap-4">
           <h2>Overview</h2>
           {detail.intro.map((paragraph) => (
             <p key={paragraph} className="text-base">
@@ -48,7 +48,7 @@ function ServiceDetailIntro({
               />
             </div>
           ) : null}
-          <Card className="p-6">
+          <Card className="gap-4 p-6">
             <p className="text-text-secondary text-xs font-medium tracking-[0.1em] uppercase">
               Part of{" "}
               <Link
@@ -58,7 +58,7 @@ function ServiceDetailIntro({
                 {categoryTitle}
               </Link>
             </p>
-            <h3 className="mt-2">Quick Facts</h3>
+            <h3>Quick Facts</h3>
 
             <dl className="flex flex-col gap-4">
               <div>
@@ -79,7 +79,7 @@ function ServiceDetailIntro({
               </div>
             </dl>
 
-            <CTAButton asChild variant="primary" className="mt-2">
+            <CTAButton asChild variant="primary" className="w-full sm:w-fit lg:w-full">
               <Link href="/contact">Request a Quote</Link>
             </CTAButton>
           </Card>

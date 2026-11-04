@@ -23,7 +23,9 @@ function CountUp({
   const ref = React.useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const shouldReduceMotion = useReducedMotion();
-  const [display, setDisplay] = React.useState(0);
+  // Starts at the real value so server-rendered HTML, crawlers and reduced-motion
+  // visitors all see the true number; the count-up only runs once in view.
+  const [display, setDisplay] = React.useState(value);
 
   React.useEffect(() => {
     if (!isInView || shouldReduceMotion) return;
@@ -37,9 +39,10 @@ function CountUp({
     return () => controls.stop();
   }, [isInView, shouldReduceMotion, value, duration]);
 
-  const shown = shouldReduceMotion ? value : display;
   const formatted =
-    decimals > 0 ? shown.toFixed(decimals) : Math.round(shown).toLocaleString();
+    decimals > 0
+      ? display.toFixed(decimals)
+      : Math.round(display).toLocaleString("en-US");
 
   return (
     <span ref={ref} className={className}>

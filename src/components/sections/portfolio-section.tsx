@@ -12,7 +12,7 @@ import { projects } from "@/data/projects";
 
 function PortfolioSection() {
   return (
-    <Section className="bg-bg-base">
+    <Section className="bg-bg-surface">
       <SectionHeading
         eyebrow="Our Work"
         title="Projects That Speak for Us"
@@ -20,18 +20,18 @@ function PortfolioSection() {
         className="mx-auto"
       />
 
-      <AnimatedGroup className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3">
+      <AnimatedGroup className="mx-auto mt-10 grid max-w-5xl grid-cols-1 gap-5 md:mt-14 md:grid-cols-2 lg:gap-6">
         {projects.slice(0, 3).map((project, index) => (
           <div key={project.slug}>
-            <Link href={`/portfolio/${project.slug}`} className="group block">
-              <Card className="h-full overflow-hidden p-0">
+            <Link href={`/portfolio/${project.slug}`} className="group block h-full">
+              <Card className="h-full gap-0 overflow-hidden p-0">
                 <div className="relative aspect-video overflow-hidden">
                   <ProjectImage
                     src={project.thumbnail}
                     alt={project.title}
                     label={project.title}
                     index={index}
-                    sizes="(min-width: 768px) 33vw, 100vw"
+                    sizes="(min-width: 768px) 50vw, 100vw"
                     className="transition-transform duration-300 group-hover:scale-105"
                   />
                   <ArrowUpRight

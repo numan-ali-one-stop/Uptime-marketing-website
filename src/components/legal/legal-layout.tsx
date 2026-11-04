@@ -4,6 +4,8 @@ import * as React from "react";
 import Link from "next/link";
 
 import { GradientText } from "@/components/ui/gradient-text";
+import { SectionImage } from "@/components/ui/section-image";
+import type { Photo } from "@/data/photos";
 import { cn } from "@/lib/utils";
 
 export type LegalSection = {
@@ -15,6 +17,7 @@ type LegalLayoutProps = {
   eyebrow: string;
   title: string;
   lastUpdated: string;
+  photo: Photo;
   sections: LegalSection[];
   children: React.ReactNode;
 };
@@ -23,6 +26,7 @@ function LegalLayout({
   eyebrow,
   title,
   lastUpdated,
+  photo,
   sections,
   children,
 }: LegalLayoutProps) {
@@ -55,16 +59,24 @@ function LegalLayout({
   }, [sections]);
 
   return (
-    <div className="mx-auto max-w-7xl px-6 py-16 md:py-24 lg:px-8">
-      <div className="flex flex-col items-start gap-4 pb-12">
-        <GradientText className="text-xs font-medium tracking-[0.2em] uppercase">
-          {eyebrow}
-        </GradientText>
-        <h1>{title}</h1>
-        <p className="text-text-muted text-sm">Last updated: {lastUpdated}</p>
+    <div className="mx-auto max-w-7xl px-5 pt-6 pb-14 sm:px-6 md:pt-8 md:pb-20 lg:px-8 lg:pt-10">
+      <div className="grid grid-cols-1 items-center gap-6 pb-10 md:grid-cols-2 md:gap-10 md:pb-14">
+        <div className="flex min-w-0 flex-col items-start gap-4">
+          <GradientText className="text-xs font-medium tracking-[0.2em] uppercase">
+            {eyebrow}
+          </GradientText>
+          <h1>{title}</h1>
+          <p className="text-text-muted text-sm">Last updated: {lastUpdated}</p>
+        </div>
+        <SectionImage
+          photo={photo}
+          sizes="(min-width: 768px) 50vw, 100vw"
+          className="aspect-[21/9]"
+          preload
+        />
       </div>
 
-      <div className="grid grid-cols-1 gap-12 lg:grid-cols-[240px_1fr]">
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-[240px_1fr] lg:gap-12">
         <nav
           aria-label="Table of contents"
           className="hidden lg:block"
@@ -92,7 +104,7 @@ function LegalLayout({
 
         <div
           className={cn(
-            "max-w-3xl",
+            "max-w-3xl min-w-0",
             "[&_h2]:mt-2 [&_h2]:mb-4 [&_h2:not(:first-child)]:mt-4",
             "[&_h3]:mt-6 [&_h3]:mb-3",
             "[&_p]:mb-4 [&_p:last-child]:mb-0",

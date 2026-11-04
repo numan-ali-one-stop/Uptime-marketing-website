@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ExternalLink } from "lucide-react";
 
 import { FinalCtaSection } from "@/components/sections/final-cta-section";
 import { PortfolioGallery } from "@/components/sections/portfolio-gallery";
 import { PortfolioNextProject } from "@/components/sections/portfolio-next-project";
 import { PortfolioOverviewBar } from "@/components/sections/portfolio-overview-bar";
 import { PortfolioResults } from "@/components/sections/portfolio-results";
+import { PageHero } from "@/components/sections/page-hero";
 import { JsonLd } from "@/components/seo/json-ld";
 import { AnimatedGroup } from "@/components/ui/animated-group";
-import { Badge } from "@/components/ui/badge";
-import { ProjectImage } from "@/components/ui/project-image";
+import { CTAButton } from "@/components/ui/cta-button";
 import { Section } from "@/components/ui/section";
 import { getProject, projects } from "@/data/projects";
 import { siteConfig } from "@/data/site";
@@ -19,6 +19,10 @@ import { breadcrumbSchema, creativeWorkSchema } from "@/lib/schema";
 type PortfolioDetailPageProps = {
   params: Promise<{ slug: string }>;
 };
+
+// Every valid path is pre-rendered, so anything else is a true 404 rather than
+// the not-found screen sent with a 200 status.
+export const dynamicParams = false;
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
@@ -61,6 +65,7 @@ export default async function PortfolioDetailPage({
   const currentIndex = projects.findIndex((p) => p.slug === project.slug);
   const nextProject = projects[(currentIndex + 1) % projects.length];
   const projectUrl = `${siteConfig.url}/portfolio/${project.slug}`;
+  const hasGallery = project.gallery.some(Boolean);
 
   return (
     <>
@@ -75,61 +80,28 @@ export default async function PortfolioDetailPage({
         ]}
       />
 
-      <Section
-        className="bg-bg-base relative overflow-hidden py-20 md:py-28"
-        containerClassName="relative w-full"
-      >
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_-10%,var(--accent)_0%,transparent_60%)] opacity-25"
-        />
-
-        <AnimatedGroup className="relative flex flex-col gap-8">
-          <div className="flex flex-col items-start gap-5 text-left">
-            <nav aria-label="Breadcrumb">
-              <ol className="text-text-secondary flex flex-wrap items-center gap-2 text-sm">
-                <li>
-                  <Link
-                    href="/"
-                    className="hover:text-text-primary transition-colors"
-                  >
-                    Home
-                  </Link>
-                </li>
-                <li aria-hidden="true">/</li>
-                <li>
-                  <Link
-                    href="/portfolio"
-                    className="hover:text-text-primary transition-colors"
-                  >
-                    Our Work
-                  </Link>
-                </li>
-                <li aria-hidden="true">/</li>
-                <li className="text-text-primary" aria-current="page">
-                  {project.title}
-                </li>
-              </ol>
-            </nav>
-
-            <Badge variant="secondary">{project.category}</Badge>
-            <h1>{project.title}</h1>
-            <p className="text-text-secondary text-lg">
-              {project.client} — {project.year}
-            </p>
-          </div>
-
-          <div className="relative aspect-[21/9] w-full overflow-hidden rounded-2xl">
-            <ProjectImage
-              src={project.heroImage}
-              alt={project.title}
-              label={project.title}
-              sizes="100vw"
-              priority
-            />
-          </div>
-        </AnimatedGroup>
-      </Section>
+      <PageHero
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Our Work", href: "/portfolio" },
+          { label: project.title },
+        ]}
+        eyebrow={project.category}
+        title={project.title}
+        subtitle={project.excerpt}
+        photo={{ src: project.heroImage, alt: project.heroAlt ?? project.title }}
+        photoClassName="aspect-video"
+        actions={
+          project.liveUrl ? (
+            <CTAButton asChild variant="primary">
+              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                Visit Live Site
+                <ExternalLink aria-hidden="true" />
+              </a>
+            </CTAButton>
+          ) : undefined
+        }
+      />
 
       <PortfolioOverviewBar project={project} className="bg-bg-surface" />
 
@@ -157,7 +129,11 @@ export default async function PortfolioDetailPage({
         </AnimatedGroup>
       </Section>
 
-      <PortfolioResults results={project.results} className="bg-bg-base" />
+      <PortfolioResults
+        results={project.results}
+        isFacts={project.resultsAreFacts}
+        className="bg-bg-base"
+      />
 
       <PortfolioGallery
         images={project.gallery}
@@ -165,27 +141,9 @@ export default async function PortfolioDetailPage({
         className="bg-bg-surface"
       />
 
-      {project.testimonial ? (
-        <Section className="bg-bg-base">
-          <AnimatedGroup className="mx-auto flex max-w-3xl flex-col items-center gap-6 text-center">
-            <p className="font-heading text-text-primary text-2xl leading-snug font-medium">
-              &ldquo;{project.testimonial.quote}&rdquo;
-            </p>
-            <div>
-              <p className="text-text-primary text-sm font-semibold">
-                {project.testimonial.name}
-              </p>
-              <p className="text-text-muted text-sm">
-                {project.testimonial.role}, {project.client}
-              </p>
-            </div>
-          </AnimatedGroup>
-        </Section>
-      ) : null}
-
       <PortfolioNextProject
         project={nextProject}
-        className={project.testimonial ? undefined : "bg-bg-base"}
+        className={hasGallery ? "bg-bg-base" : "bg-bg-surface"}
       />
 
       <FinalCtaSection
@@ -195,6 +153,7 @@ export default async function PortfolioDetailPage({
         primaryHref="/contact"
         secondaryLabel="View All Work"
         secondaryHref="/portfolio"
+        className={hasGallery ? "bg-bg-surface" : undefined}
       />
     </>
   );

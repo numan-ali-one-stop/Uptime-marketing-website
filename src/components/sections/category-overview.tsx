@@ -27,8 +27,8 @@ function CategoryOverview({
 
   return (
     <Section className={cn("bg-bg-base", className)}>
-      <AnimatedGroup className="grid grid-cols-1 items-start gap-12 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
-        <div className="flex flex-col gap-5">
+      <AnimatedGroup className="grid grid-cols-1 items-start gap-8 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
+        <div className="flex min-w-0 flex-col gap-4">
           <h2>Overview</h2>
           {category.overview.map((paragraph) => (
             <p key={paragraph} className="text-base">
@@ -49,13 +49,18 @@ function CategoryOverview({
               />
             </div>
           ) : null}
-          <Card className="p-6">
+          <Card className="gap-4 p-6">
             <div className="flex size-12 items-center justify-center rounded-xl bg-[linear-gradient(135deg,color-mix(in_oklab,var(--accent)_18%,transparent)_0%,color-mix(in_oklab,var(--accent-secondary)_18%,transparent)_100%)]">
               <Icon className="text-accent size-6" aria-hidden="true" />
             </div>
-            <h3 className="mt-2">What&apos;s Included</h3>
-            <Checklist items={category.subServices.map((s) => s.title)} />
-            <CTAButton asChild variant="primary" className="mt-2">
+            <h3>What&apos;s Included</h3>
+            <Checklist
+              items={category.subServices.map((s) => ({
+        label: s.title,
+        href: `/services/${category.slug}/${s.slug}`,
+      }))}
+            />
+            <CTAButton asChild variant="primary" className="w-full sm:w-fit lg:w-full">
               <Link href="/contact">Get a Free Consultation</Link>
             </CTAButton>
           </Card>

@@ -22,7 +22,7 @@ function AboutStats({ className }: AboutStatsProps) {
       <AnimatedGroup className="grid grid-cols-2 gap-8 lg:grid-cols-4">
         {STATS.map((stat) => (
           <div key={stat.label} className="flex flex-col items-center text-center">
-            <GradientText className="font-heading text-4xl font-bold sm:text-5xl">
+            <GradientText className="font-heading text-3xl font-bold sm:text-5xl">
               <CountUp value={stat.value} suffix="+" />
             </GradientText>
             <span className="text-text-secondary mt-2 text-sm">{stat.label}</span>

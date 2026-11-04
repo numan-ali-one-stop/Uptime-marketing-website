@@ -13,10 +13,10 @@ import { ServiceDetailIntro } from "@/components/sections/service-detail-intro";
 import { ServiceDetailRelated } from "@/components/sections/service-detail-related";
 import { ServiceDetailWhyItMatters } from "@/components/sections/service-detail-why-it-matters";
 import { TrackPageView } from "@/components/analytics/track-page-view";
+import { PageHero } from "@/components/sections/page-hero";
+import { servicePhotos } from "@/data/photos";
 import { JsonLd } from "@/components/seo/json-ld";
-import { AnimatedGroup } from "@/components/ui/animated-group";
 import { CTAButton } from "@/components/ui/cta-button";
-import { Section } from "@/components/ui/section";
 import { getServiceDetail } from "@/data/service-details";
 import {
   getServiceCategory,
@@ -29,6 +29,10 @@ import { breadcrumbSchema, faqSchema, serviceSchema } from "@/lib/schema";
 type ServiceDetailPageProps = {
   params: Promise<{ category: string; service: string }>;
 };
+
+// Every valid path is pre-rendered, so anything else is a true 404 rather than
+// the not-found screen sent with a 200 status.
+export const dynamicParams = false;
 
 export function generateStaticParams() {
   return serviceCategories.flatMap((category) =>
@@ -104,59 +108,19 @@ export default async function ServiceDetailPage({
         ]}
       />
 
-      <Section
-        className="bg-bg-base relative flex items-center overflow-hidden pt-10 pb-20 md:pt-14 md:pb-28"
-        containerClassName="relative w-full"
-      >
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_-10%,var(--accent)_0%,transparent_60%)] opacity-25"
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,var(--border-hover)_1px,transparent_0)] bg-[size:32px_32px] opacity-[0.15]"
-        />
-
-        <AnimatedGroup className="relative flex flex-col items-start gap-5 text-left">
-          <nav aria-label="Breadcrumb">
-            <ol className="text-text-secondary flex flex-wrap items-center gap-2 text-sm">
-              <li>
-                <Link
-                  href="/"
-                  className="hover:text-text-primary transition-colors"
-                >
-                  Home
-                </Link>
-              </li>
-              <li aria-hidden="true">/</li>
-              <li>
-                <Link
-                  href="/services"
-                  className="hover:text-text-primary transition-colors"
-                >
-                  Services
-                </Link>
-              </li>
-              <li aria-hidden="true">/</li>
-              <li>
-                <Link
-                  href={`/services/${category.slug}`}
-                  className="hover:text-text-primary transition-colors"
-                >
-                  {category.title}
-                </Link>
-              </li>
-              <li aria-hidden="true">/</li>
-              <li className="text-text-primary" aria-current="page">
-                {detail.title}
-              </li>
-            </ol>
-          </nav>
-
-          <h1>{detail.heroHeadline}</h1>
-          <p className="max-w-2xl text-lg">{detail.heroSubheadline}</p>
-
-          <div className="flex flex-wrap items-center gap-4 pt-2">
+      <PageHero
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Services", href: "/services" },
+          { label: category.title, href: `/services/${category.slug}` },
+          { label: detail.title },
+        ]}
+        eyebrow={detail.title}
+        title={detail.heroHeadline}
+        subtitle={detail.heroSubheadline}
+        photo={servicePhotos[detail.slug]}
+        actions={
+          <>
             <CTAButton
               asChild
               variant="primary"
@@ -171,9 +135,9 @@ export default async function ServiceDetailPage({
             >
               <Link href="/portfolio">View Our Work</Link>
             </CTAButton>
-          </div>
-        </AnimatedGroup>
-      </Section>
+          </>
+        }
+      />
 
       <ServiceDetailIntro
         detail={detail}
@@ -208,7 +172,7 @@ export default async function ServiceDetailPage({
       <ServiceDetailRelated relatedSlugs={detail.relatedServices} />
 
       <FinalCtaSection
-        heading={`Ready to get started with ${detail.title}?`}
+        heading={`Ready to start your ${detail.title} project?`}
         body="Book a free consultation and we'll map out exactly how we can help — no pressure, just a clear plan."
         primaryLabel="Get a Free Consultation"
         primaryHref="/contact"

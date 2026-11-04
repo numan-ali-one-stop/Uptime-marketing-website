@@ -2,7 +2,7 @@ import type { Faq } from "@/types/faqs";
 
 export const faqs: Faq[] = [
   {
-    question: "What services does UPTIME MARKETING provide?",
+    question: "What services does Uptime Marketing provide?",
     answer:
       "We work across five areas: development, AI solutions, SEO and search, digital marketing, and design. Most clients start with one project and expand into others as we prove out results, but every engagement is scoped around what actually moves your business forward.",
   },
@@ -27,7 +27,7 @@ export const faqs: Faq[] = [
       "We do — from support agents that resolve tickets autonomously to internal agents that automate multi-step business processes. We design these around your existing data and tools, so they plug into how your business actually runs.",
   },
   {
-    question: "How do I start a project with UPTIME MARKETING?",
+    question: "How do I start a project with Uptime Marketing?",
     answer:
       "Reach out through our contact page with a short description of what you're trying to build or improve. We'll schedule a free consultation, understand your goals and constraints, and come back with a clear scope and timeline before any commitment is made.",
   },

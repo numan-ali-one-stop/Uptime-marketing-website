@@ -22,7 +22,7 @@ function ServiceDetailDeliverables({
         className="mx-auto"
       />
 
-      <div className="mt-12 flex justify-center">
+      <div className="mt-8 flex justify-center md:mt-12">
         <Checklist items={deliverables} />
       </div>
     </Section>

@@ -42,7 +42,7 @@ function PortfolioLightbox({
   return (
     <Dialog open={openIndex !== null} onOpenChange={onOpenChange}>
       <DialogContent
-        className="max-w-3xl border-none bg-transparent p-0 shadow-none sm:max-w-3xl"
+        className="max-w-3xl border-none bg-transparent p-0 shadow-none sm:max-w-3xl [&_[data-slot=dialog-close]]:top-3 [&_[data-slot=dialog-close]]:right-3 [&_[data-slot=dialog-close]]:z-10 [&_[data-slot=dialog-close]]:rounded-full [&_[data-slot=dialog-close]]:bg-black/70! [&_[data-slot=dialog-close]]:p-2 [&_[data-slot=dialog-close]]:text-white! [&_[data-slot=dialog-close]]:opacity-100"
         showCloseButton
       >
         <DialogTitle className="sr-only">

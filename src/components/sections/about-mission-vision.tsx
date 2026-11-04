@@ -3,6 +3,8 @@ import { Compass, Telescope } from "lucide-react";
 import { AnimatedGroup } from "@/components/ui/animated-group";
 import { Card } from "@/components/ui/card";
 import { Section } from "@/components/ui/section";
+import { SectionImage } from "@/components/ui/section-image";
+import { pagePhotos } from "@/data/photos";
 import { cn } from "@/lib/utils";
 
 const MISSION_VISION = [
@@ -27,12 +29,19 @@ type AboutMissionVisionProps = {
 function AboutMissionVision({ className }: AboutMissionVisionProps) {
   return (
     <Section className={cn("bg-bg-surface", className)}>
-      <AnimatedGroup className="grid grid-cols-1 gap-6 md:grid-cols-2">
+      <AnimatedGroup className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+        <div className="md:col-span-2 lg:col-span-1">
+          <SectionImage
+            photo={pagePhotos.aboutMission}
+            sizes="(min-width: 1024px) 33vw, 100vw"
+            className="aspect-[16/9] h-full lg:aspect-auto lg:min-h-full"
+          />
+        </div>
         {MISSION_VISION.map((item) => (
           <div key={item.title}>
-            <Card className="h-full p-8">
+            <Card className="h-full gap-3 p-6 md:p-8">
               <item.icon className="text-accent size-9" aria-hidden="true" />
-              <h3 className="mt-2">{item.title}</h3>
+              <h3>{item.title}</h3>
               <p className="text-base">{item.description}</p>
             </Card>
           </div>

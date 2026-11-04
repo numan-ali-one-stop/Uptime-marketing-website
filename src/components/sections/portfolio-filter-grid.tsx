@@ -16,9 +16,17 @@ import type { ProjectCategory } from "@/types/projects";
 
 type FilterId = "all" | "web-app" | "ai" | "seo" | "marketing" | "design";
 
-const FILTERS: { id: FilterId; label: string; categories: ProjectCategory[] | null }[] = [
+const FILTERS: {
+  id: FilterId;
+  label: string;
+  categories: ProjectCategory[] | null;
+}[] = [
   { id: "all", label: "All", categories: null },
-  { id: "web-app", label: "Web/App", categories: ["Web Development", "Mobile App"] },
+  {
+    id: "web-app",
+    label: "Web/App",
+    categories: ["Web Development", "Mobile App"],
+  },
   { id: "ai", label: "AI", categories: ["AI"] },
   { id: "seo", label: "SEO", categories: ["SEO"] },
   { id: "marketing", label: "Marketing", categories: ["Digital Marketing"] },
@@ -28,6 +36,15 @@ const FILTERS: { id: FilterId; label: string; categories: ProjectCategory[] | nu
 function isFilterId(value: string | null): value is FilterId {
   return FILTERS.some((filter) => filter.id === value);
 }
+
+// Only offer filters that lead somewhere.
+const AVAILABLE_FILTERS = FILTERS.filter(
+  (filter) =>
+    !filter.categories ||
+    projects.some((project) => filter.categories?.includes(project.category))
+);
+// "All" plus a single category would just show the same list twice.
+const SHOW_FILTERS = AVAILABLE_FILTERS.length > 2;
 
 function PortfolioFilterGrid() {
   const router = useRouter();
@@ -53,51 +70,64 @@ function PortfolioFilterGrid() {
       params.set("category", id);
     }
     const query = params.toString();
-    router.push(query ? `/portfolio?${query}` : "/portfolio", { scroll: false });
+    router.push(query ? `/portfolio?${query}` : "/portfolio", {
+      scroll: false,
+    });
   }
 
   return (
     <div>
-      <div className="flex flex-wrap items-center justify-center gap-3">
-        {FILTERS.map((filter) => {
-          const isActive = filter.id === activeFilter;
-          return (
-            <button
-              key={filter.id}
-              type="button"
-              onClick={() => handleFilterChange(filter.id)}
-              aria-pressed={isActive}
-              className={cn(
-                "rounded-full border px-5 py-2.5 text-sm font-medium tracking-[0.02em] transition-colors",
-                isActive
-                  ? "border-accent bg-accent text-white"
-                  : "border-border text-text-secondary hover:border-accent hover:text-text-primary"
-              )}
-            >
-              {filter.label}
-            </button>
-          );
-        })}
-      </div>
+      {SHOW_FILTERS ? (
+        <>
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+            {AVAILABLE_FILTERS.map((filter) => {
+              const isActive = filter.id === activeFilter;
+              return (
+                <button
+                  key={filter.id}
+                  type="button"
+                  onClick={() => handleFilterChange(filter.id)}
+                  aria-pressed={isActive}
+                  className={cn(
+                    "rounded-full border px-4 py-2 text-sm font-medium tracking-[0.02em] transition-colors sm:px-5 sm:py-2.5",
+                    isActive
+                      ? "border-accent bg-accent text-white"
+                      : "border-border text-text-secondary hover:border-accent hover:text-text-primary"
+                  )}
+                >
+                  {filter.label}
+                </button>
+              );
+            })}
+          </div>
 
-      <p className="text-text-muted mt-6 text-center text-sm">
-        {filteredProjects.length}{" "}
-        {filteredProjects.length === 1 ? "project" : "projects"}
-      </p>
+          <p className="text-text-muted mt-6 text-center text-sm">
+            {filteredProjects.length}{" "}
+            {filteredProjects.length === 1 ? "project" : "projects"}
+          </p>
+        </>
+      ) : null}
 
       {filteredProjects.length === 0 ? (
         <div className="mt-14 flex flex-col items-center gap-4 text-center">
           <p className="text-text-secondary text-base">
             No projects match this filter yet.
           </p>
-          <CTAButton variant="secondary" onClick={() => handleFilterChange("all")}>
+          <CTAButton
+            variant="secondary"
+            onClick={() => handleFilterChange("all")}
+          >
             Reset Filter
           </CTAButton>
         </div>
       ) : (
         <motion.div
           layout
-          className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+          className={cn(
+            "grid grid-cols-1 gap-5 md:grid-cols-2 lg:gap-6",
+            SHOW_FILTERS && "mt-8 md:mt-10",
+            filteredProjects.length < 3 ? "mx-auto max-w-5xl" : "lg:grid-cols-3"
+          )}
         >
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, index) => (
@@ -109,8 +139,11 @@ function PortfolioFilterGrid() {
                 exit={{ opacity: 0, y: -16 }}
                 transition={{ duration: 0.3 }}
               >
-                <Link href={`/portfolio/${project.slug}`} className="group block">
-                  <Card className="h-full overflow-hidden p-0">
+                <Link
+                  href={`/portfolio/${project.slug}`}
+                  className="group block h-full"
+                >
+                  <Card className="h-full gap-0 overflow-hidden p-0">
                     <div className="relative aspect-video overflow-hidden">
                       <ProjectImage
                         src={project.thumbnail}

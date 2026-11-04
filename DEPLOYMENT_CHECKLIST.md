@@ -4,8 +4,8 @@ Work through this list before pointing the real domain at this site. Nothing her
 
 ## 1. Replace placeholder content
 
-- [ ] `src/data/projects.ts` — all 6 case studies are fictional (flagged with a `PLACEHOLDER CONTENT` comment at the top of the file). Replace with real client work, real results/metrics, and real testimonials, or remove any project you don't have permission to publish.
-- [ ] `src/data/testimonials.ts` — replace placeholder quotes with real client testimonials (get written/recorded permission before publishing anyone's name or quote).
+- [ ] `src/data/projects.ts` — holds only real client work. Confirm you have permission to publish each project, and add measured results when you have them.
+- [ ] `src/data/testimonials.ts` — testimonials are currently removed from the site. To bring them back, add real quotes (with written/recorded permission) and render `TestimonialsSection` in `src/app/page.tsx`.
 - [ ] `src/data/company.ts` — replace placeholder team member names/roles/photos with real ones.
 - [ ] `src/data/site.ts` — every field marked `// TODO: replace with real ...` needs a real value:
   - [ ] Real support email (`email`)
@@ -14,14 +14,15 @@ Work through this list before pointing the real domain at this site. Nothing her
   - [ ] Real business address (`address`)
   - [ ] Real business hours (`businessHours`)
   - [ ] Real social profile URLs (`social`) — currently placeholder LinkedIn/Facebook/Instagram/X URLs
-- [ ] `src/components/sections/contact-map.tsx` — currently a placeholder `about:blank` iframe. Replace the `src` with a real Google Maps embed URL for the office address (see the code comment in that file for the exact steps).
+- [ ] `src/data/site.ts` — set `mapEmbedUrl` to a real Google Maps embed URL (Maps → Share → "Embed a map"). The contact page shows a photo until then.
 - [ ] `src/app/privacy-policy/page.tsx` and `src/app/terms-of-service/page.tsx` — both are template content (flagged at the top of each file). **Have a qualified legal professional review both pages** and fill in jurisdiction-specific clauses (governing law/venue, GDPR/CCPA/PIPEDA specifics depending on where the business and its customers are located) before launch.
 
 ## 2. Add real project images
 
-- [ ] Every `thumbnail`, `heroImage`, and `gallery` entry in `src/data/projects.ts` is currently an empty string, which renders a gradient placeholder. Add real screenshots/photos to `/public/images/` and update those fields with the real paths.
-- [ ] `src/data/company.ts` team photos — currently rendered as gradient avatar initials in `about-team.tsx`. Add real headshots to `/public/team/` and update the component if you want real photos instead of the placeholder avatars.
-- [ ] Optional: replace the generated `app/favicon.ico` (currently the default Next.js starter icon) with a real favicon converted from your final logo. `app/icon.tsx` and `app/apple-icon.tsx` already generate an on-brand "U" monogram icon and don't need changes unless the brand mark changes.
+- [ ] Project images in `/public/images/portfolio/` are screenshots of the live client sites. Retake them if those sites change.
+- [ ] All other new page photography lives in `src/data/photos.ts` and is hotlinked from Unsplash. Check the links still load before launch, and swap in your own photos of your team and office where you have them.
+- [ ] `src/data/company.ts` team — the About page's team section stays hidden while names are `[...]` placeholders and appears automatically once real names are in. Add real headshots to `/public/team/` and update `about-team.tsx` if you want real photos instead of avatars.
+- [ ] Optional: add a real `app/favicon.ico` converted from your final logo. `app/icon.tsx` and `app/apple-icon.tsx` already generate an on-brand "U" monogram icon and don't need changes unless the brand mark changes.
 
 ## 3. Set production environment variables
 

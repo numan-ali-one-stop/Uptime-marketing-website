@@ -16,7 +16,7 @@ function PortfolioNextProject({ project, className }: PortfolioNextProjectProps)
   return (
     <Section className={cn("bg-bg-surface", className)}>
       <Link href={`/portfolio/${project.slug}`} className="group block">
-        <Card className="grid grid-cols-1 items-center gap-6 overflow-hidden p-0 lg:grid-cols-2">
+        <Card className="grid grid-cols-1 items-center gap-0 overflow-hidden p-0 lg:grid-cols-2">
           <div className="relative aspect-video overflow-hidden">
             <ProjectImage
               src={project.thumbnail}
@@ -27,7 +27,7 @@ function PortfolioNextProject({ project, className }: PortfolioNextProjectProps)
             />
           </div>
 
-          <div className="flex flex-col items-start gap-2 p-8">
+          <div className="flex flex-col items-start gap-2 p-6 md:p-8">
             <span className="text-accent text-xs font-medium tracking-[0.2em] uppercase">
               Next Project
             </span>

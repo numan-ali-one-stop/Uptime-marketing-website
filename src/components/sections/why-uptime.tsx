@@ -42,15 +42,15 @@ function WhyUptime() {
         className="mx-auto"
       />
 
-      <AnimatedGroup className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <AnimatedGroup className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 md:mt-14 lg:grid-cols-4 lg:gap-6">
         {WHY_UPTIME_VALUES.map((value) => (
           <div key={value.title}>
-            <Card className="p-6">
+            <Card className="h-full gap-3 p-6">
               <value.icon className="text-accent size-8" aria-hidden="true" />
-              <h3 className="font-heading text-text-primary mt-4 text-sm font-semibold tracking-[0.1em] uppercase">
+              <h3 className="font-heading text-text-primary mt-1 text-sm font-semibold tracking-[0.1em] uppercase">
                 {value.title}
               </h3>
-              <p className="mt-2 text-sm">{value.description}</p>
+              <p className="text-sm">{value.description}</p>
             </Card>
           </div>
         ))}

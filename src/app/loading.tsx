@@ -4,13 +4,13 @@ export default function Loading() {
   return (
     <div aria-hidden="true" aria-label="Loading" role="status">
       {/* Hero skeleton */}
-      <section className="pt-10 pb-20 md:pt-14 md:pb-28">
-        <div className="mx-auto flex max-w-7xl flex-col items-start gap-5 px-6 lg:px-8">
+      <section className="pt-6 pb-12 md:pt-8 md:pb-16 lg:pt-10 lg:pb-20">
+        <div className="mx-auto flex max-w-7xl flex-col items-start gap-5 px-5 sm:px-6 lg:px-8">
           <Skeleton className="bg-bg-elevated h-4 w-32 rounded-full" />
           <Skeleton className="bg-bg-elevated h-12 w-full max-w-xl rounded-lg" />
           <Skeleton className="bg-bg-elevated h-5 w-full max-w-2xl rounded-lg" />
           <Skeleton className="bg-bg-elevated h-5 w-3/4 max-w-xl rounded-lg" />
-          <div className="mt-2 flex gap-4">
+          <div className="mt-2 flex flex-wrap gap-4">
             <Skeleton className="bg-bg-elevated h-12 w-44 rounded-full" />
             <Skeleton className="bg-bg-elevated h-12 w-36 rounded-full" />
           </div>
@@ -18,8 +18,8 @@ export default function Loading() {
       </section>
 
       {/* Card grid skeleton */}
-      <section className="py-20 md:py-28">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 px-6 sm:grid-cols-2 lg:grid-cols-3 lg:px-8">
+      <section className="py-14 md:py-20 lg:py-24">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 px-5 sm:grid-cols-2 sm:px-6 lg:grid-cols-3 lg:px-8">
           {Array.from({ length: 6 }).map((_, index) => (
             <div
               key={index}

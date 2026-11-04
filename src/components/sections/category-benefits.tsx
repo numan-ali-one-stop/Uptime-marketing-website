@@ -24,17 +24,17 @@ function CategoryBenefits({ category, className }: CategoryBenefitsProps) {
         className="mx-auto"
       />
 
-      <AnimatedGroup className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <AnimatedGroup className="mt-10 md:mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {category.benefits.map((benefit, index) => {
           const Icon = BENEFIT_ICONS[index % BENEFIT_ICONS.length];
           return (
             <div key={benefit.title}>
-              <Card className="p-6">
+              <Card className="h-full gap-3 p-6">
                 <Icon className="text-accent size-8" aria-hidden="true" />
-                <h3 className="font-heading text-text-primary mt-4 text-sm font-semibold tracking-[0.1em] uppercase">
+                <h3 className="font-heading text-text-primary mt-1 text-sm font-semibold tracking-[0.1em] uppercase">
                   {benefit.title}
                 </h3>
-                <p className="mt-2 text-sm">{benefit.description}</p>
+                <p className="text-sm">{benefit.description}</p>
               </Card>
             </div>
           );

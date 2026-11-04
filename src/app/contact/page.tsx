@@ -1,21 +1,20 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
 import { ContactFormLoader } from "@/components/sections/contact-form-loader";
 import { ContactInfo } from "@/components/sections/contact-info";
 import { ContactMap } from "@/components/sections/contact-map";
 import { FaqSection } from "@/components/sections/faq-section";
 import { FinalCtaSection } from "@/components/sections/final-cta-section";
+import { PageHero } from "@/components/sections/page-hero";
+import { pagePhotos } from "@/data/photos";
 import { JsonLd } from "@/components/seo/json-ld";
-import { AnimatedGroup } from "@/components/ui/animated-group";
-import { GradientText } from "@/components/ui/gradient-text";
 import { Section } from "@/components/ui/section";
 import { siteConfig } from "@/data/site";
 import { breadcrumbSchema, organizationSchema } from "@/lib/schema";
 import type { Faq } from "@/types/faqs";
 
 const description =
-  "Get in touch with UPTIME MARKETING for a free consultation on your next web, AI, SEO, marketing or design project. We usually reply within one business day.";
+  "Get in touch with Uptime Marketing for a free consultation on your next web, AI, SEO, marketing or design project. We usually reply within one business day.";
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -78,48 +77,13 @@ export default function ContactPage() {
         ]}
       />
 
-      <Section
-        className="bg-bg-base relative flex items-center overflow-hidden pt-8 pb-16 md:pt-10 md:pb-20"
-        containerClassName="relative w-full"
-      >
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_-10%,var(--accent)_0%,transparent_60%)] opacity-25"
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,var(--border-hover)_1px,transparent_0)] bg-[size:32px_32px] opacity-[0.15]"
-        />
-
-        <AnimatedGroup className="relative flex flex-col items-start gap-5 text-left">
-          <nav aria-label="Breadcrumb">
-            <ol className="text-text-secondary flex items-center gap-2 text-sm">
-              <li>
-                <Link
-                  href="/"
-                  className="hover:text-text-primary transition-colors"
-                >
-                  Home
-                </Link>
-              </li>
-              <li aria-hidden="true">/</li>
-              <li className="text-text-primary" aria-current="page">
-                Contact Us
-              </li>
-            </ol>
-          </nav>
-
-          <GradientText className="text-xs font-medium tracking-[0.2em] uppercase">
-            Contact Us
-          </GradientText>
-          <h1>Let&apos;s build something together</h1>
-          <p className="max-w-2xl text-lg">
-            Tell us about your project and we&apos;ll set up a free
-            consultation — or just reach out with a question. We usually
-            reply within one business day.
-          </p>
-        </AnimatedGroup>
-      </Section>
+      <PageHero
+        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Contact Us" }]}
+        eyebrow="Contact Us"
+        title="Let's build something together"
+        subtitle="Tell us about your project and we'll set up a free consultation, or just reach out with a question. We usually reply within one business day."
+        photo={pagePhotos.contact}
+      />
 
       <Section className="bg-bg-surface">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">

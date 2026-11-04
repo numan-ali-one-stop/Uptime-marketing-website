@@ -18,7 +18,7 @@ function PortfolioOverviewBar({ project, className }: PortfolioOverviewBarProps)
 
   return (
     <Section className={cn("bg-bg-base", className)}>
-      <div className="border-border bg-bg-surface grid grid-cols-1 gap-8 rounded-2xl border p-8 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="border-border bg-bg-surface grid grid-cols-1 gap-6 rounded-2xl border p-6 sm:grid-cols-2 md:p-8 lg:grid-cols-4">
         <div>
           <p className="text-text-muted text-xs font-medium tracking-[0.1em] uppercase">
             Client
@@ -39,10 +39,10 @@ function PortfolioOverviewBar({ project, className }: PortfolioOverviewBarProps)
 
         <div>
           <p className="text-text-muted text-xs font-medium tracking-[0.1em] uppercase">
-            Timeline
+            {project.year ? "Timeline" : "Category"}
           </p>
           <p className="text-text-primary mt-1 text-sm font-medium">
-            {project.year}
+            {project.year ?? project.category}
           </p>
         </div>
 

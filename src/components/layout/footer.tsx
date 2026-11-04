@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { Mail, MessageCircle, Phone } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 
+import { WhatsappIcon } from "@/components/icons/brand-icons";
 import { CTAButton } from "@/components/ui/cta-button";
 import { serviceCategories } from "@/data/services";
 import { siteConfig } from "@/data/site";
@@ -21,8 +22,8 @@ function Footer() {
 
   return (
     <footer className="border-border bg-bg-surface border-t">
-      <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-20">
-        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8 lg:py-16">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1.2fr_0.8fr_0.8fr_1.3fr]">
           <div className="flex flex-col gap-4">
             <Link
               href="/"
@@ -58,6 +59,14 @@ function Footer() {
               Services
             </h3>
             <ul className="flex flex-col gap-3">
+              <li>
+                <Link
+                  href="/services"
+                  className="text-text-secondary hover:text-accent text-sm transition-colors"
+                >
+                  All Services
+                </Link>
+              </li>
               {serviceCategories.map((category) => (
                 <li key={category.slug}>
                   <Link
@@ -97,7 +106,7 @@ function Footer() {
               <li>
                 <a
                   href={`mailto:${siteConfig.email}`}
-                  className="text-text-secondary hover:text-accent flex items-center gap-2 text-sm transition-colors"
+                  className="text-text-secondary hover:text-accent flex items-center gap-2 text-sm break-all transition-colors"
                 >
                   <Mail className="size-4 shrink-0" aria-hidden="true" />
                   {siteConfig.email}
@@ -119,7 +128,7 @@ function Footer() {
                   rel="noopener noreferrer"
                   className="text-text-secondary hover:text-accent flex items-center gap-2 text-sm transition-colors"
                 >
-                  <MessageCircle
+                  <WhatsappIcon
                     className="size-4 shrink-0"
                     aria-hidden="true"
                   />
@@ -135,7 +144,7 @@ function Footer() {
       </div>
 
       <div className="border-border border-t">
-        <div className="text-text-muted mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 py-6 text-xs sm:flex-row lg:px-8">
+        <div className="text-text-muted mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-5 py-6 pr-20 text-xs sm:flex-row sm:px-6 sm:pr-24 lg:px-8 lg:pr-24">
           <p>
             &copy; {year} {siteConfig.name}. All rights reserved.
           </p>

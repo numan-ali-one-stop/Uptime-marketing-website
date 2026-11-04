@@ -1,7 +1,7 @@
+import { homeSectionPhotos } from "@/data/photos";
 import { getServiceCategory } from "@/data/services";
 
 import { SplitSection } from "./split-section";
-import { DevMockupVisual } from "./visuals/dev-mockup-visual";
 
 function DevelopmentSection() {
   const category = getServiceCategory("development");
@@ -13,12 +13,14 @@ function DevelopmentSection() {
       id="development"
       eyebrow={category.title}
       heading={category.tagline}
-      body="We develop scalable digital solutions tailored to your business requirements."
-      checklistItems={category.subServices.map((s) => s.title)}
+      body="We design and build mobile apps, web applications and custom software around how your business actually works, then support them after launch."
+      checklistItems={category.subServices.map((s) => ({
+        label: s.title,
+        href: `/services/${category.slug}/${s.slug}`,
+      }))}
       ctaLabel="Explore Development"
       ctaHref={`/services/${category.slug}`}
-      visual={<DevMockupVisual />}
-      visualPosition="right"
+      photo={homeSectionPhotos[category.slug]}
       className="bg-bg-surface"
     />
   );

@@ -9,6 +9,7 @@ import type { Metadata } from "next";
 
 import { LegalLayout, type LegalSection } from "@/components/legal/legal-layout";
 import { JsonLd } from "@/components/seo/json-ld";
+import { pagePhotos } from "@/data/photos";
 import { siteConfig } from "@/data/site";
 import { breadcrumbSchema } from "@/lib/schema";
 
@@ -56,6 +57,7 @@ export default function PrivacyPolicyPage() {
       eyebrow="Legal"
       title="Privacy Policy"
       lastUpdated={LAST_UPDATED}
+      photo={pagePhotos.privacy}
       sections={SECTIONS}
     >
       <div className="flex flex-col gap-10">

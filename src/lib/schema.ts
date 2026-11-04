@@ -160,7 +160,7 @@ export function creativeWorkSchema(project: Project): SchemaObject {
     "@type": "CreativeWork",
     name: project.title,
     description: project.excerpt,
-    dateCreated: String(project.year),
+    ...(project.year ? { dateCreated: String(project.year) } : {}),
     keywords: project.techStack.join(", "),
     url: projectUrl,
     creator: {

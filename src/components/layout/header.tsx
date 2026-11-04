@@ -30,16 +30,16 @@ function Header() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 h-20 transition-[background-color,backdrop-filter,border-color] duration-300",
+        "sticky top-0 z-50 h-16 transition-[background-color,backdrop-filter,border-color] duration-300 lg:h-20",
         scrolled
           ? "border-border bg-bg-base/80 border-b backdrop-blur-xl"
           : "border-b border-transparent bg-transparent"
       )}
     >
-      <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-6 lg:px-8">
+      <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-5 sm:px-6 lg:px-8">
         <Link
           href="/"
-          className="font-heading text-text-primary text-lg font-bold tracking-wide uppercase"
+          className="font-heading text-text-primary text-base font-bold tracking-wide uppercase sm:text-lg"
         >
           {siteConfig.name}
         </Link>

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 import {
   NavigationMenu,
@@ -18,7 +19,7 @@ function ServicesMegaMenu({ className }: { className?: string }) {
     <NavigationMenu viewport={false} className={cn("max-w-none", className)}>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger className="text-text-secondary hover:text-text-primary focus:text-text-primary data-[state=open]:text-text-primary h-auto bg-transparent px-0 py-0 text-sm font-medium hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent">
+          <NavigationMenuTrigger className="text-text-secondary hover:text-text-primary focus:text-text-primary data-[state=open]:text-text-primary h-auto bg-transparent px-0 py-0 text-sm font-medium hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent data-[state=open]:hover:bg-transparent data-[state=open]:focus:bg-transparent">
             Services
           </NavigationMenuTrigger>
           <NavigationMenuContent
@@ -59,6 +60,15 @@ function ServicesMegaMenu({ className }: { className?: string }) {
                   </ul>
                 </div>
               ))}
+            </div>
+            <div className="border-border mt-4 border-t pt-4">
+              <Link
+                href="/services"
+                className="text-accent inline-flex items-center gap-1.5 text-sm font-medium hover:underline"
+              >
+                View all services
+                <ArrowRight className="size-4" aria-hidden="true" />
+              </Link>
             </div>
           </NavigationMenuContent>
         </NavigationMenuItem>

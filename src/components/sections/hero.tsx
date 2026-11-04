@@ -1,41 +1,34 @@
+import Image from "next/image";
 import Link from "next/link";
-import { ChevronDown } from "lucide-react";
 
 import { AnimatedGroup } from "@/components/ui/animated-group";
 import { CTAButton } from "@/components/ui/cta-button";
 import { GradientText } from "@/components/ui/gradient-text";
-import { Section } from "@/components/ui/section";
+import { SectionImage } from "@/components/ui/section-image";
+import { pagePhotos } from "@/data/photos";
+import { serviceCategories } from "@/data/services";
 
-import { HeroVisual } from "./visuals/hero-visual";
+import { HeroBackdrop } from "./page-hero";
 
 function Hero() {
   return (
-    <Section
-      className="bg-bg-base relative flex items-center overflow-hidden pt-12 pb-24 md:pt-16 md:pb-32 lg:pt-20 lg:pb-40"
-      containerClassName="relative w-full"
-    >
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_-10%,var(--accent)_0%,transparent_60%)] opacity-25"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,var(--border-hover)_1px,transparent_0)] bg-[size:32px_32px] opacity-[0.15]"
-      />
+    <section className="bg-bg-base relative -mt-16 overflow-hidden pt-16 lg:-mt-20 lg:pt-20">
+      <HeroBackdrop />
 
-      <AnimatedGroup className="relative grid grid-cols-1 items-center gap-16 lg:grid-cols-2 lg:gap-12">
-        <div className="flex flex-col items-start gap-6 text-left">
+      <AnimatedGroup className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-5 pt-6 pb-14 sm:px-6 md:pt-8 md:pb-16 lg:grid-cols-2 lg:gap-14 lg:px-8 lg:pt-10 lg:pb-20">
+        <div className="flex min-w-0 flex-col items-start gap-4 text-left md:gap-5">
           <GradientText className="text-xs font-medium tracking-[0.2em] uppercase">
             Technology &amp; Digital Growth
           </GradientText>
           <h1>
-            Build Better. <GradientText>Grow Faster.</GradientText>
+            Build Better. <GradientText className="whitespace-nowrap">Grow Faster.</GradientText>
           </h1>
-          <p className="max-w-xl text-lg">
-            We build digital products, AI solutions and growth strategies that
-            help businesses compete and grow online.
+          <p className="max-w-xl text-base md:text-lg">
+            Uptime Marketing is one partner for web and mobile development, AI
+            solutions, SEO, digital marketing and design, so everything that
+            drives your business online works from the same plan.
           </p>
-          <div className="flex flex-wrap items-center gap-4 pt-2">
+          <div className="flex flex-wrap items-center gap-3 pt-2 sm:gap-4">
             <CTAButton asChild variant="primary">
               <Link href="/contact">Get Started</Link>
             </CTAButton>
@@ -43,21 +36,39 @@ function Hero() {
               <Link href="/services">Explore Services</Link>
             </CTAButton>
           </div>
+          <ul className="flex flex-wrap gap-2 pt-3">
+            {serviceCategories.map((category) => (
+              <li key={category.slug}>
+                <Link
+                  href={`/services/${category.slug}`}
+                  className="border-border text-text-secondary hover:border-accent hover:text-text-primary block rounded-full border px-3 py-1.5 text-xs font-medium transition-colors"
+                >
+                  {category.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
 
-        <HeroVisual />
+        <div className="relative sm:mb-6 sm:ml-6 lg:mb-8 lg:ml-8">
+          <SectionImage
+            photo={pagePhotos.homeHero}
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="aspect-[16/10] lg:aspect-[4/3]"
+            preload
+          />
+          <div className="border-bg-base absolute -bottom-6 -left-6 hidden aspect-[4/3] w-[38%] overflow-hidden rounded-xl border-4 shadow-2xl sm:block lg:-bottom-8 lg:-left-8">
+            <Image
+              src={pagePhotos.homeHeroInset.src}
+              alt={pagePhotos.homeHeroInset.alt}
+              fill
+              sizes="(min-width: 1024px) 20vw, 38vw"
+              className="object-cover"
+            />
+          </div>
+        </div>
       </AnimatedGroup>
-
-      <div
-        aria-hidden="true"
-        className="text-text-muted absolute bottom-8 left-1/2 flex -translate-x-1/2 animate-[scroll-hint_2s_ease-in-out_infinite] flex-col items-center gap-1"
-      >
-        <span className="text-[10px] font-medium tracking-[0.2em] uppercase">
-          Scroll
-        </span>
-        <ChevronDown className="size-4" />
-      </div>
-    </Section>
+    </section>
   );
 }
 

@@ -11,7 +11,6 @@ import { PortfolioSection } from "@/components/sections/portfolio-section";
 import { ProcessSection } from "@/components/sections/process-section";
 import { SeoSection } from "@/components/sections/seo-section";
 import { ServicesOverview } from "@/components/sections/services-overview";
-import { TestimonialsSection } from "@/components/sections/testimonials-section";
 import { WhyUptime } from "@/components/sections/why-uptime";
 import { JsonLd } from "@/components/seo/json-ld";
 import { faqs } from "@/data/faqs";
@@ -51,11 +50,10 @@ export default function HomePage() {
       <SeoSection />
       <DigitalMarketingSection />
       <DesignCreativeSection />
-      <ProcessSection />
+      <ProcessSection className="bg-bg-base" />
       <PortfolioSection />
-      <TestimonialsSection />
       <FaqSection />
-      <FinalCtaSection />
+      <FinalCtaSection className="bg-bg-surface" />
     </>
   );
 }

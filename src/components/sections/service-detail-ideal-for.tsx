@@ -24,10 +24,10 @@ function ServiceDetailIdealFor({
         className="mx-auto"
       />
 
-      <AnimatedGroup className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <AnimatedGroup className="mt-10 md:mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {idealFor.map((item) => (
           <div key={item}>
-            <Card className="flex-row items-start gap-3 p-5">
+            <Card className="h-full flex-row items-start gap-3 p-5">
               <Users className="text-accent size-5 shrink-0" aria-hidden="true" />
               <p className="text-text-primary text-sm font-medium">{item}</p>
             </Card>

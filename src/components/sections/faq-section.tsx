@@ -29,7 +29,7 @@ function FaqSection({
       <AnimatedGroup className="flex flex-col items-center">
         <SectionHeading eyebrow={eyebrow} title={title} align="center" />
 
-        <Accordion type="single" collapsible className="mt-12 w-full max-w-3xl">
+        <Accordion type="single" collapsible className="mt-8 w-full max-w-3xl md:mt-12">
           {faqs.map((faq, i) => (
             <AccordionItem key={faq.question} value={`faq-${i}`}>
               <AccordionTrigger className="text-text-primary text-left text-base font-medium hover:no-underline">

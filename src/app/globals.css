@@ -116,103 +116,6 @@ html {
   }
 }
 
-/* Decorative keyframes for section visuals — applied via arbitrary animate-[...] utilities. */
-@keyframes orbit-cw {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes orbit-ccw {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(-360deg);
-  }
-}
-
-@keyframes float-y {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes pulse-glow {
-  0%,
-  100% {
-    opacity: 0.55;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.15);
-  }
-}
-
-@keyframes shimmer-sweep {
-  from {
-    background-position: -200% 0;
-  }
-  to {
-    background-position: 200% 0;
-  }
-}
-
-@keyframes rise-up {
-  from {
-    transform: scaleY(0);
-  }
-  to {
-    transform: scaleY(1);
-  }
-}
-
-@keyframes blob-morph {
-  0%,
-  100% {
-    border-radius: 42% 58% 65% 35% / 45% 40% 60% 55%;
-    transform: translate(0, 0) rotate(0deg);
-  }
-  33% {
-    border-radius: 58% 42% 35% 65% / 55% 60% 40% 45%;
-    transform: translate(2%, -3%) rotate(6deg);
-  }
-  66% {
-    border-radius: 35% 65% 55% 45% / 40% 35% 65% 60%;
-    transform: translate(-2%, 2%) rotate(-4deg);
-  }
-}
-
-/* Pair with the SVG `pathLength={1}` prop so any path normalizes to a unit length. */
-@keyframes dash-draw {
-  from {
-    stroke-dashoffset: 1;
-  }
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes scroll-hint {
-  0%,
-  100% {
-    transform: translateY(0);
-    opacity: 0.4;
-  }
-  50% {
-    transform: translateY(6px);
-    opacity: 1;
-  }
-}
-
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -232,17 +135,19 @@ html {
   }
 
   h1 {
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    @apply leading-[1.05] font-bold;
+    font-size: clamp(2rem, 1.25rem + 3.2vw, 3.75rem);
+    overflow-wrap: break-word;
+    @apply leading-[1.1] font-bold;
   }
 
   h2 {
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(1.625rem, 1.25rem + 1.8vw, 2.625rem);
+    overflow-wrap: break-word;
     @apply leading-tight font-bold;
   }
 
   h3 {
-    @apply text-2xl leading-snug font-semibold;
+    @apply text-xl leading-snug font-semibold sm:text-2xl;
   }
 
   p {

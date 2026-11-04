@@ -14,12 +14,12 @@ function CategoryTools({ title, tools, className }: CategoryToolsProps) {
     <Section className={cn("bg-bg-surface", className)}>
       <SectionHeading
         eyebrow="Tools & Technologies"
-        title={`What we use to deliver ${title}`}
+        title={`The tools behind our ${title} work`}
         align="center"
         className="mx-auto"
       />
 
-      <AnimatedGroup className="mt-10 flex flex-wrap justify-center gap-3">
+      <AnimatedGroup className="mt-8 flex flex-wrap justify-center gap-2 md:mt-10 md:gap-3">
         {tools.map((tool) => (
           <span
             key={tool}

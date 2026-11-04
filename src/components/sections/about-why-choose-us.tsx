@@ -47,12 +47,12 @@ function AboutWhyChooseUs({ className }: AboutWhyChooseUsProps) {
         className="mx-auto"
       />
 
-      <AnimatedGroup className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2">
+      <AnimatedGroup className="mt-10 md:mt-14 grid grid-cols-1 gap-6 md:grid-cols-2">
         {PILLARS.map((pillar) => (
           <div key={pillar.title}>
-            <Card className="h-full p-8">
+            <Card className="h-full gap-3 p-6 md:p-8">
               <pillar.icon className="text-accent size-8" aria-hidden="true" />
-              <h3 className="font-heading text-text-primary mt-4 text-lg font-semibold">
+              <h3 className="font-heading text-text-primary mt-1 text-lg font-semibold">
                 {pillar.title}
               </h3>
               <p className="text-base">{pillar.description}</p>

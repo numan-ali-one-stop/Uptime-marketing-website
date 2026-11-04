@@ -1,18 +1,17 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Suspense } from "react";
 
 import { FinalCtaSection } from "@/components/sections/final-cta-section";
 import { PortfolioFilterGrid } from "@/components/sections/portfolio-filter-grid";
+import { PageHero } from "@/components/sections/page-hero";
+import { pagePhotos } from "@/data/photos";
 import { JsonLd } from "@/components/seo/json-ld";
-import { AnimatedGroup } from "@/components/ui/animated-group";
-import { GradientText } from "@/components/ui/gradient-text";
 import { Section } from "@/components/ui/section";
 import { siteConfig } from "@/data/site";
 import { breadcrumbSchema } from "@/lib/schema";
 
 const description =
-  "See how UPTIME MARKETING has helped businesses grow through web and mobile development, AI, SEO, digital marketing and design — real projects, real results.";
+  "See websites Uptime Marketing has designed and built for real businesses, including mobile tyre services across Greater Manchester, with live links to each.";
 
 export const metadata: Metadata = {
   title: "Our Work",
@@ -35,48 +34,13 @@ export default function PortfolioPage() {
         ])}
       />
 
-      <Section
-        className="bg-bg-base relative flex items-center overflow-hidden py-20 md:py-28"
-        containerClassName="relative w-full"
-      >
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_-10%,var(--accent)_0%,transparent_60%)] opacity-25"
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,var(--border-hover)_1px,transparent_0)] bg-[size:32px_32px] opacity-[0.15]"
-        />
-
-        <AnimatedGroup className="relative flex flex-col items-start gap-5 text-left">
-          <nav aria-label="Breadcrumb">
-            <ol className="text-text-secondary flex items-center gap-2 text-sm">
-              <li>
-                <Link
-                  href="/"
-                  className="hover:text-text-primary transition-colors"
-                >
-                  Home
-                </Link>
-              </li>
-              <li aria-hidden="true">/</li>
-              <li className="text-text-primary" aria-current="page">
-                Our Work
-              </li>
-            </ol>
-          </nav>
-
-          <GradientText className="text-xs font-medium tracking-[0.2em] uppercase">
-            Our Work
-          </GradientText>
-          <h1>Projects That Speak for Us</h1>
-          <p className="max-w-2xl text-lg">
-            A look at the web, mobile, AI, SEO, marketing and design work
-            we&apos;ve delivered for businesses like yours — including what
-            changed and by how much.
-          </p>
-        </AnimatedGroup>
-      </Section>
+      <PageHero
+        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Our Work" }]}
+        eyebrow="Our Work"
+        title="Projects That Speak for Us"
+        subtitle="A look at the websites and digital work we've delivered for businesses like yours, with live links where you can see them for yourself."
+        photo={pagePhotos.portfolio}
+      />
 
       <Section className="bg-bg-surface">
         <Suspense fallback={null}>

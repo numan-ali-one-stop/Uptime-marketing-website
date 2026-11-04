@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { Clock, Mail, MapPin, Phone } from "lucide-react";
 
+import { WhatsappIcon } from "@/components/icons/brand-icons";
 import { Card } from "@/components/ui/card";
 import { siteConfig } from "@/data/site";
 import { getIcon } from "@/lib/icons";
@@ -19,7 +20,7 @@ const CONTACT_CARDS = [
     href: `tel:${siteConfig.phone}`,
   },
   {
-    icon: MessageCircle,
+    icon: WhatsappIcon,
     label: "WhatsApp",
     value: "Chat with us",
     href: `https://wa.me/${siteConfig.whatsappNumber}`,

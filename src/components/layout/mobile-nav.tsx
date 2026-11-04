@@ -64,6 +64,16 @@ function MobileNav() {
               </Link>
             </li>
             <li>
+              <Link
+                href="/services"
+                onClick={() => setOpen(false)}
+                aria-current={pathname === "/services" ? "page" : undefined}
+                className="text-text-primary hover:bg-bg-surface block rounded-lg px-2 py-3 text-base font-medium"
+              >
+                All Services
+              </Link>
+            </li>
+            <li>
               <Accordion type="single" collapsible>
                 {serviceCategories.map((category) => (
                   <AccordionItem

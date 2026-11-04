@@ -31,7 +31,7 @@ function ServiceDetailRelated({
         className="mx-auto"
       />
 
-      <AnimatedGroup className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <AnimatedGroup className="mt-10 md:mt-14 grid grid-cols-1 gap-5 lg:gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {relatedServices.map(({ category, subService }) => (
           <SubServiceCard
             key={subService.slug}

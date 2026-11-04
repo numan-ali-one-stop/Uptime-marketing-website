@@ -16,5 +16,7 @@ export type SiteConfig = {
   whatsappNumber: string;
   address: string;
   businessHours: string;
+  /** Google Maps embed URL; the contact page shows a photo until it's set. */
+  mapEmbedUrl?: string;
   social: SocialLink[];
 };

@@ -33,7 +33,7 @@ function ProcessTimeline({
       />
 
       {/* Desktop: horizontal row connected by a single line */}
-      <div className="relative mt-16 hidden lg:block">
+      <div className="relative mt-14 hidden lg:block">
         <div className="absolute top-6 right-[12.5%] left-[12.5%]">
           <AnimatedConnector orientation="horizontal" />
         </div>
@@ -65,11 +65,11 @@ function ProcessTimeline({
       </div>
 
       {/* Mobile / tablet: vertical timeline */}
-      <div className="relative mt-14 lg:hidden">
+      <div className="relative mt-10 lg:hidden">
         <div className="absolute top-1.5 bottom-1.5 left-[5px]">
           <AnimatedConnector orientation="vertical" />
         </div>
-        <AnimatedGroup className="flex flex-col gap-10">
+        <AnimatedGroup className="flex flex-col gap-6 md:grid md:grid-cols-2 md:gap-8">
           {steps.map((step, index) => (
             <div key={step.title} className="relative flex gap-5 pl-0">
               <span className="bg-accent ring-bg-surface relative z-10 mt-1.5 size-3 shrink-0 rounded-full ring-4" />

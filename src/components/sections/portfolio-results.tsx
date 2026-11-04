@@ -30,27 +30,29 @@ function parseMetric(metric: string) {
 }
 
 type PortfolioResultsProps = {
-  results: [ProjectResult, ProjectResult, ProjectResult];
+  results: ProjectResult[];
+  /** Project facts, so the section mustn't present them as measured impact. */
+  isFacts?: boolean;
   className?: string;
 };
 
-function PortfolioResults({ results, className }: PortfolioResultsProps) {
+function PortfolioResults({ results, isFacts, className }: PortfolioResultsProps) {
   return (
     <Section className={cn("bg-bg-surface", className)}>
       <SectionHeading
-        eyebrow="Results"
-        title="The impact, by the numbers"
+        eyebrow={isFacts ? "At a Glance" : "Results"}
+        title={isFacts ? "The project, by the numbers" : "The impact, by the numbers"}
         align="center"
         className="mx-auto"
       />
 
-      <AnimatedGroup className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3">
+      <AnimatedGroup className="mt-10 md:mt-14 grid grid-cols-1 gap-5 lg:gap-6 md:grid-cols-3">
         {results.map((result) => {
           const parsed = parseMetric(result.metric);
           return (
             <div key={result.label}>
-              <Card className="items-center p-8 text-center">
-                <GradientText className="font-heading text-4xl font-bold sm:text-5xl">
+              <Card className="h-full items-center gap-2 p-6 text-center lg:p-8">
+                <GradientText className="font-heading text-4xl font-bold lg:text-5xl">
                   <CountUp
                     value={parsed.value}
                     prefix={parsed.prefix}

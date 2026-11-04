@@ -10,6 +10,7 @@ import type { Metadata } from "next";
 
 import { LegalLayout, type LegalSection } from "@/components/legal/legal-layout";
 import { JsonLd } from "@/components/seo/json-ld";
+import { pagePhotos } from "@/data/photos";
 import { siteConfig } from "@/data/site";
 import { breadcrumbSchema } from "@/lib/schema";
 
@@ -60,6 +61,7 @@ export default function TermsOfServicePage() {
       eyebrow="Legal"
       title="Terms of Service"
       lastUpdated={LAST_UPDATED}
+      photo={pagePhotos.terms}
       sections={SECTIONS}
     >
       <div className="flex flex-col gap-10">

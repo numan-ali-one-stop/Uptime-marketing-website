@@ -1,7 +1,12 @@
 "use client";
 
 import * as React from "react";
-import { motion, useReducedMotion, type Variants } from "motion/react";
+import {
+  motion,
+  useReducedMotion,
+  type HTMLMotionProps,
+  type Variants,
+} from "motion/react";
 
 import { cn } from "@/lib/utils";
 
@@ -59,6 +64,18 @@ function AnimatedGroup({
         // flex/grid item while the child's box styling doubles up on top.
         if (!React.isValidElement(child)) {
           return <motion.div variants={item}>{child}</motion.div>;
+        }
+
+        // A plain <div> child becomes the motion.div itself. Nesting it would
+        // separate its flex/grid classes from its children, so gap-* and
+        // alignment utilities would silently stop applying to them.
+        if (child.type === "div") {
+          return (
+            <motion.div
+              variants={item}
+              {...(child.props as HTMLMotionProps<"div">)}
+            />
+          );
         }
 
         const childClassName =

@@ -9,6 +9,6 @@ export default async function Image() {
     eyebrow: "Our Work",
     title: "Projects That Speak for Us",
     subtitle:
-      "Web, mobile, AI, SEO, marketing and design work — real results.",
+      "Websites and digital work we have delivered for real businesses.",
   });
 }

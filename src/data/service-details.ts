@@ -4,7 +4,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
   "mobile-app-development": {
     slug: "mobile-app-development",
     title: "Mobile App Development",
-    metaTitle: "Mobile App Development Services | UPTIME MARKETING",
+    metaTitle: "Mobile App Development Services | Uptime Marketing",
     metaDescription:
       "Native and cross-platform mobile app development for iOS and Android, engineered for speed, stability, offline support and smooth store approval every time.",
     heroHeadline: "Mobile Apps Built for Real Users, Not Just App Stores",
@@ -48,9 +48,9 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     ],
     whyItMatters: [
       {
-        statOrPoint: "88%",
+        statOrPoint: "First Impressions",
         description:
-          "of users abandon an app after a poor first experience — performance and stability aren't optional polish, they're retention.",
+          "decide whether people keep an app installed — performance and stability aren't optional polish, they're retention.",
       },
       {
         statOrPoint: "2 Platforms",
@@ -137,7 +137,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
   "web-app-development": {
     slug: "web-app-development",
     title: "Web App Development",
-    metaTitle: "Web App Development Services | UPTIME MARKETING",
+    metaTitle: "Web App Development Services | Uptime Marketing",
     metaDescription:
       "Custom web application development with modern frameworks for speed, reliability and scalable growth, from focused MVPs to full production-ready platforms.",
     heroHeadline: "Web Applications Built to Handle Real Traffic",
@@ -183,7 +183,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
       {
         statOrPoint: "53%",
         description:
-          "of users abandon a web page that takes longer than 3 seconds to load — performance directly affects whether people stay.",
+          "of mobile visits are abandoned when a page takes longer than 3 seconds to load, according to Google — performance directly affects whether people stay.",
       },
       {
         statOrPoint: "1 Platform",
@@ -191,9 +191,9 @@ export const serviceDetails: Record<string, ServiceDetail> = {
           "A well-built responsive web app works across desktop and mobile browsers without a separate native build.",
       },
       {
-        statOrPoint: "0 Downtime",
+        statOrPoint: "Reliability First",
         description:
-          "is the goal for cloud deployments we manage — we architect for reliability, not just for the demo.",
+          "is how we approach the cloud deployments we manage — we architect for production, not just for the demo.",
       },
     ],
     process: [
@@ -270,7 +270,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
   "custom-software-development": {
     slug: "custom-software-development",
     title: "Custom Software Development",
-    metaTitle: "Custom Software Development Services | UPTIME MARKETING",
+    metaTitle: "Custom Software Development Services | Uptime Marketing",
     metaDescription:
       "Bespoke software and internal tools built around your exact workflows, replacing spreadsheets and rigid off-the-shelf systems for good, at any business scale.",
     heroHeadline: "Software Built Around How Your Business Actually Works",
@@ -403,7 +403,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
   "ai-development": {
     slug: "ai-development",
     title: "AI Development",
-    metaTitle: "AI Development Services | UPTIME MARKETING",
+    metaTitle: "AI Development Services | Uptime Marketing",
     metaDescription:
       "Custom AI model development and integration built around your business data, from proof of concept through production deployment and ongoing monitoring.",
     heroHeadline: "Custom AI Built Around Your Business, Not a Generic Model",
@@ -447,9 +447,9 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     ],
     whyItMatters: [
       {
-        statOrPoint: "10x",
+        statOrPoint: "Faster Processing",
         description:
-          "faster processing is a common outcome when AI takes over a well-defined, repetitive analysis or classification task.",
+          "is a common outcome when AI takes over a well-defined, repetitive analysis or classification task.",
       },
       {
         statOrPoint: "Your Data",
@@ -538,7 +538,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
   "ai-agents": {
     slug: "ai-agents",
     title: "AI Agents",
-    metaTitle: "AI Agent Development Services | UPTIME MARKETING",
+    metaTitle: "AI Agent Development Services | Uptime Marketing",
     metaDescription:
       "Autonomous AI agents that complete multi-step tasks across your tools — support, operations and internal workflows handled end-to-end, reliably, at scale.",
     heroHeadline: "AI Agents That Complete Real Work, Not Just Answer Questions",
@@ -671,7 +671,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
   "business-automation": {
     slug: "business-automation",
     title: "Business Automation",
-    metaTitle: "Business Automation Services | UPTIME MARKETING",
+    metaTitle: "Business Automation Services | Uptime Marketing",
     metaDescription:
       "Automated workflows that remove manual, repetitive operational work by connecting your existing tools and systems together end-to-end, reliably, for good.",
     heroHeadline: "Remove the Manual Work Slowing Your Team Down",
@@ -804,7 +804,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
   "custom-ai-solutions": {
     slug: "custom-ai-solutions",
     title: "Custom AI Solutions",
-    metaTitle: "Custom AI Solutions | UPTIME MARKETING",
+    metaTitle: "Custom AI Solutions | Uptime Marketing",
     metaDescription:
       "Purpose-built AI products designed around a specific business problem, from concept and data strategy through to full production deployment and support.",
     heroHeadline: "AI Products Built Around One Specific Business Problem",
@@ -937,7 +937,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
   seo: {
     slug: "seo",
     title: "SEO",
-    metaTitle: "SEO Services | UPTIME MARKETING",
+    metaTitle: "SEO Services | Uptime Marketing",
     metaDescription:
       "Technical, on-page and off-page SEO built to grow organic traffic and search rankings over time, backed by transparent, plain-language monthly reporting.",
     heroHeadline: "SEO Built to Compound, Not Just Rank",
@@ -1066,7 +1066,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
   "gbp-optimization": {
     slug: "gbp-optimization",
     title: "GBP Optimization",
-    metaTitle: "Google Business Profile Optimization Services | UPTIME MARKETING",
+    metaTitle: "Google Business Profile Optimization Services | Uptime Marketing",
     metaDescription:
       "Google Business Profile management and optimization that improves local search visibility, map pack rankings and customer engagement over time, reliably.",
     heroHeadline: "Win the Local Search Results That Actually Drive Foot Traffic",
@@ -1195,7 +1195,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
   "google-search-console": {
     slug: "google-search-console",
     title: "Google Search Console",
-    metaTitle: "Google Search Console Management Services | UPTIME MARKETING",
+    metaTitle: "Google Search Console Management Services | Uptime Marketing",
     metaDescription:
       "Ongoing Google Search Console monitoring, diagnostics and performance reporting to catch indexing and search issues before they quietly cost you traffic.",
     heroHeadline: "Catch Search Problems Before They Cost You Traffic",
@@ -1324,7 +1324,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
   "website-indexing": {
     slug: "website-indexing",
     title: "Website Indexing",
-    metaTitle: "Website Indexing Services | UPTIME MARKETING",
+    metaTitle: "Website Indexing Services | Uptime Marketing",
     metaDescription:
       "Technical indexing services that improve crawl budget efficiency and ensure your most important pages are discovered and indexed by Google, fast and reliably.",
     heroHeadline: "Make Sure Google Can Actually Find Your Pages",
@@ -1453,7 +1453,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
   aeo: {
     slug: "aeo",
     title: "AEO",
-    metaTitle: "Answer Engine Optimization (AEO) Services | UPTIME MARKETING",
+    metaTitle: "Answer Engine Optimization (AEO) Services | Uptime Marketing",
     metaDescription:
       "Answer Engine Optimization that structures your content to win featured snippets, voice search results and other direct-answer placements, consistently.",
     heroHeadline: "Get Your Content Chosen as the Answer",
@@ -1582,7 +1582,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
   geo: {
     slug: "geo",
     title: "GEO",
-    metaTitle: "Generative Engine Optimization (GEO) Services | UPTIME MARKETING",
+    metaTitle: "Generative Engine Optimization (GEO) Services | Uptime Marketing",
     metaDescription:
       "Generative Engine Optimization to improve how your brand is cited and represented inside AI tools like ChatGPT, Gemini and Google AI Overviews, reliably.",
     heroHeadline: "Show Up Inside AI-Generated Answers, Not Just Search Results",
@@ -1711,7 +1711,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
   "digital-marketing": {
     slug: "digital-marketing",
     title: "Digital Marketing",
-    metaTitle: "Digital Marketing Services | UPTIME MARKETING",
+    metaTitle: "Digital Marketing Services | Uptime Marketing",
     metaDescription:
       "Integrated digital marketing campaigns across paid, social and organic channels, aligned to one clear business goal and tracked through to real revenue.",
     heroHeadline: "Marketing That's Coordinated, Not Scattered",
@@ -1844,7 +1844,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
   "social-media-marketing": {
     slug: "social-media-marketing",
     title: "Social Media Marketing",
-    metaTitle: "Social Media Marketing Services | UPTIME MARKETING",
+    metaTitle: "Social Media Marketing Services | Uptime Marketing",
     metaDescription:
       "Paid and organic social media marketing strategy that builds the right audience, drives real engagement and turns social attention into lasting demand.",
     heroHeadline: "Build an Audience That Actually Converts",
@@ -1977,7 +1977,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
   "social-media-management": {
     slug: "social-media-management",
     title: "Social Media Management",
-    metaTitle: "Social Media Management Services | UPTIME MARKETING",
+    metaTitle: "Social Media Management Services | Uptime Marketing",
     metaDescription:
       "Consistent, on-brand social media content and community management that keeps your brand active and responsive across every platform, every single week.",
     heroHeadline: "A Consistent Brand Presence Without the Daily Workload",
@@ -2110,7 +2110,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
   "digital-advertising": {
     slug: "digital-advertising",
     title: "Digital Advertising",
-    metaTitle: "Digital Advertising Services | UPTIME MARKETING",
+    metaTitle: "Digital Advertising Services | Uptime Marketing",
     metaDescription:
       "Performance-driven digital advertising across search, social and display, managed and continuously optimized against real conversion and revenue data.",
     heroHeadline: "Ad Spend Managed Against Real Conversions",
@@ -2239,7 +2239,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
   "logo-design": {
     slug: "logo-design",
     title: "Logo Design",
-    metaTitle: "Logo Design Services | UPTIME MARKETING",
+    metaTitle: "Logo Design Services | Uptime Marketing",
     metaDescription:
       "Custom logo design that gives your brand a distinctive, memorable mark built on strategy, not templates or generic design trends borrowed from someone else.",
     heroHeadline: "A Mark That Actually Represents Your Brand",
@@ -2368,7 +2368,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
   "graphic-design": {
     slug: "graphic-design",
     title: "Graphic Design",
-    metaTitle: "Graphic Design Services | UPTIME MARKETING",
+    metaTitle: "Graphic Design Services | Uptime Marketing",
     metaDescription:
       "Ongoing graphic design for web, social and print that stays consistently on-brand across every asset your business needs to publish, at any volume or frequency.",
     heroHeadline: "On-Brand Design for Everything You Publish",
@@ -2501,7 +2501,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
   "ui-ux-design": {
     slug: "ui-ux-design",
     title: "UI/UX Design",
-    metaTitle: "UI/UX Design Services | UPTIME MARKETING",
+    metaTitle: "UI/UX Design Services | Uptime Marketing",
     metaDescription:
       "User interface and experience design focused on clarity, usability and conversion, for web and mobile products that people genuinely enjoy using daily.",
     heroHeadline: "Interfaces People Actually Want to Use",
@@ -2634,7 +2634,7 @@ export const serviceDetails: Record<string, ServiceDetail> = {
   "creative-design": {
     slug: "creative-design",
     title: "Creative Design",
-    metaTitle: "Creative Design Services | UPTIME MARKETING",
+    metaTitle: "Creative Design Services | Uptime Marketing",
     metaDescription:
       "Concept-driven creative design for campaigns and brand moments, built to capture attention fast while staying true to your core brand identity always.",
     heroHeadline: "Creative That Gets Noticed for the Right Reasons",

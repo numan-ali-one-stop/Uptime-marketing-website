@@ -23,10 +23,10 @@ function ServiceDetailWhyItMatters({
         className="mx-auto"
       />
 
-      <AnimatedGroup className="mt-14 grid grid-cols-1 gap-10 md:grid-cols-3">
+      <AnimatedGroup className="mt-10 grid grid-cols-1 gap-8 md:mt-14 md:grid-cols-3">
         {detail.whyItMatters.map((highlight) => (
           <div key={highlight.statOrPoint} className="flex flex-col items-center text-center">
-            <GradientText className="font-heading text-4xl font-bold sm:text-5xl">
+            <GradientText className="font-heading text-3xl font-bold md:text-2xl lg:text-4xl">
               {highlight.statOrPoint}
             </GradientText>
             <p className="mt-3 max-w-xs text-sm">{highlight.description}</p>

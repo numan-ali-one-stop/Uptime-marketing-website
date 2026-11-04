@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
 import { AboutMissionVision } from "@/components/sections/about-mission-vision";
 import { AboutStats } from "@/components/sections/about-stats";
@@ -10,16 +9,15 @@ import { AboutWhatWeDo } from "@/components/sections/about-what-we-do";
 import { AboutWhyChooseUs } from "@/components/sections/about-why-choose-us";
 import { FinalCtaSection } from "@/components/sections/final-cta-section";
 import { ProcessSection } from "@/components/sections/process-section";
+import { PageHero } from "@/components/sections/page-hero";
+import { pagePhotos } from "@/data/photos";
 import { JsonLd } from "@/components/seo/json-ld";
-import { AnimatedGroup } from "@/components/ui/animated-group";
-import { GradientText } from "@/components/ui/gradient-text";
-import { Section } from "@/components/ui/section";
-import { companyInfo } from "@/data/company";
+import { companyInfo, publishedTeam } from "@/data/company";
 import { siteConfig } from "@/data/site";
 import { breadcrumbSchema, organizationSchema } from "@/lib/schema";
 
 const description =
-  "UPTIME MARKETING is a technology and digital growth agency serving businesses locally and internationally across development, AI, SEO, marketing and design.";
+  "Uptime Marketing is a technology and digital growth agency serving businesses locally and internationally across development, AI, SEO, marketing and design.";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -44,16 +42,13 @@ const aboutPageSchema = {
 const aboutOrganizationSchema = {
   ...organizationSchema(),
   foundingDate: String(companyInfo.foundedYear),
-  founder: {
-    "@type": "Person",
-    name: companyInfo.team[0].name,
-    jobTitle: companyInfo.team[0].role,
-  },
-  employee: companyInfo.team.map((member) => ({
-    "@type": "Person",
-    name: member.name,
-    jobTitle: member.role,
-  })),
+  ...(publishedTeam.length > 0 && {
+    employee: publishedTeam.map((member) => ({
+      "@type": "Person",
+      name: member.name,
+      jobTitle: member.role,
+    })),
+  }),
 };
 
 export default function AboutPage() {
@@ -70,48 +65,13 @@ export default function AboutPage() {
         ]}
       />
 
-      <Section
-        className="bg-bg-base relative flex items-center overflow-hidden pt-10 pb-20 md:pt-14 md:pb-28"
-        containerClassName="relative w-full"
-      >
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_-10%,var(--accent)_0%,transparent_60%)] opacity-25"
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,var(--border-hover)_1px,transparent_0)] bg-[size:32px_32px] opacity-[0.15]"
-        />
-
-        <AnimatedGroup className="relative flex flex-col items-start gap-5 text-left">
-          <nav aria-label="Breadcrumb">
-            <ol className="text-text-secondary flex items-center gap-2 text-sm">
-              <li>
-                <Link
-                  href="/"
-                  className="hover:text-text-primary transition-colors"
-                >
-                  Home
-                </Link>
-              </li>
-              <li aria-hidden="true">/</li>
-              <li className="text-text-primary" aria-current="page">
-                About Us
-              </li>
-            </ol>
-          </nav>
-
-          <GradientText className="text-xs font-medium tracking-[0.2em] uppercase">
-            About Us
-          </GradientText>
-          <h1>One partner for technology and digital growth</h1>
-          <p className="max-w-2xl text-lg">
-            UPTIME MARKETING is a technology and digital growth agency
-            building web and mobile products, AI solutions, and full-funnel
-            marketing for businesses locally and internationally.
-          </p>
-        </AnimatedGroup>
-      </Section>
+      <PageHero
+        breadcrumbs={[{ label: "Home", href: "/" }, { label: "About Us" }]}
+        eyebrow="About Us"
+        title="One partner for technology and digital growth"
+        subtitle="Uptime Marketing is a technology and digital growth agency building web and mobile products, AI solutions and full-funnel marketing for businesses locally and internationally."
+        photo={pagePhotos.about}
+      />
 
       <AboutStory className="bg-bg-surface" />
       <AboutMissionVision className="bg-bg-base" />
@@ -120,7 +80,9 @@ export default function AboutPage() {
       <AboutWhyChooseUs className="bg-bg-surface" />
       <AboutStats className="bg-bg-base" />
       <AboutTeam className="bg-bg-surface" />
-      <ProcessSection className="bg-bg-base" />
+      <ProcessSection
+        className={publishedTeam.length > 0 ? "bg-bg-base" : "bg-bg-surface"}
+      />
 
       <FinalCtaSection
         heading="Let's build something together"

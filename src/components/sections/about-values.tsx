@@ -17,7 +17,7 @@ const VALUES = [
   {
     icon: Gem,
     title: "Quality",
-    description: "We'd rather ship something excellent late than something mediocre on time.",
+    description: "We hold every deliverable to a high standard, and raise risks early instead of cutting corners.",
   },
   {
     icon: Eye,
@@ -60,12 +60,12 @@ function AboutValues({ className }: AboutValuesProps) {
         className="mx-auto"
       />
 
-      <AnimatedGroup className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <AnimatedGroup className="mt-10 md:mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {VALUES.map((value) => (
           <div key={value.title}>
-            <Card className="p-6">
+            <Card className="h-full gap-3 p-6">
               <value.icon className="text-accent size-7" aria-hidden="true" />
-              <h3 className="font-heading text-text-primary mt-2 text-base font-semibold">
+              <h3 className="font-heading text-text-primary text-base font-semibold">
                 {value.title}
               </h3>
               <p className="text-sm">{value.description}</p>

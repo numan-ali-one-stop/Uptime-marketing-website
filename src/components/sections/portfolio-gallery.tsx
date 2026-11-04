@@ -25,10 +25,13 @@ type PortfolioGalleryProps = {
 };
 
 function PortfolioGallery({
-  images,
+  images: allImages,
   projectTitle,
   className,
 }: PortfolioGalleryProps) {
+  // Unfilled gallery slots are empty strings, so a project with no real
+  // screenshots yet shows no gallery rather than a row of blank tiles.
+  const images = allImages.filter(Boolean);
   const [openIndex, setOpenIndex] = React.useState<number | null>(null);
 
   const goTo = React.useCallback(
@@ -52,7 +55,7 @@ function PortfolioGallery({
         className="mx-auto"
       />
 
-      <div className="mt-14 grid grid-cols-2 gap-4 lg:grid-cols-3">
+      <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 md:mt-14 lg:grid-cols-3">
         {images.map((image, index) => (
           <button
             key={index}

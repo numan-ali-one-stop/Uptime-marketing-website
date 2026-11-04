@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
@@ -5,6 +6,7 @@ import { AnimatedGroup } from "@/components/ui/animated-group";
 import { Card } from "@/components/ui/card";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { categoryPhotos } from "@/data/photos";
 import { serviceCategories } from "@/data/services";
 import { getIcon } from "@/lib/icons";
 import { cn } from "@/lib/utils";
@@ -23,25 +25,41 @@ function AboutWhatWeDo({ className }: AboutWhatWeDoProps) {
         className="mx-auto"
       />
 
-      <AnimatedGroup className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
+      <AnimatedGroup className="mt-10 flex flex-wrap justify-center gap-5 md:mt-14">
         {serviceCategories.map((category) => {
           const Icon = getIcon(category.icon);
           return (
-            <Link key={category.slug} href={`/services/${category.slug}`} className="group">
-              <Card className="h-full items-center p-6 text-center">
-                <div className="flex size-12 items-center justify-center rounded-xl bg-[linear-gradient(135deg,color-mix(in_oklab,var(--accent)_18%,transparent)_0%,color-mix(in_oklab,var(--accent-secondary)_18%,transparent)_100%)]">
-                  <Icon className="text-accent size-6" aria-hidden="true" />
+            <div
+              key={category.slug}
+              className="basis-full sm:basis-[calc(50%-0.625rem)] lg:basis-[calc((100%-5rem)/5)]"
+            >
+            <Link href={`/services/${category.slug}`} className="group block h-full">
+              <Card className="h-full gap-0 overflow-hidden p-0">
+                <div className="relative aspect-[16/10] w-full overflow-hidden">
+                  <Image
+                    src={categoryPhotos[category.slug].src}
+                    alt={categoryPhotos[category.slug].alt}
+                    fill
+                    sizes="(min-width: 1024px) 20vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
                 </div>
-                <h3 className="mt-2 text-base">{category.title}</h3>
-                <span className="text-accent mt-auto flex items-center gap-1.5 pt-2 text-sm font-medium">
+                <div className="flex flex-1 flex-col gap-2 p-4">
+                <div className="flex items-center gap-2">
+                  <Icon className="text-accent size-5 shrink-0" aria-hidden="true" />
+                  <h3 className="text-base">{category.title}</h3>
+                </div>
+                <span className="text-accent mt-auto flex items-center gap-1.5 pt-1 text-sm font-medium">
                   Learn more
                   <ArrowRight
                     className="size-4 transition-transform duration-200 group-hover:translate-x-1"
                     aria-hidden="true"
                   />
                 </span>
+                </div>
               </Card>
             </Link>
+            </div>
           );
         })}
       </AnimatedGroup>

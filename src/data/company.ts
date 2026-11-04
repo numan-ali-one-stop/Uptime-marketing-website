@@ -37,3 +37,8 @@ export const companyInfo: CompanyInfo = {
     countriesServed: 14,
   },
 };
+
+/** Team members with real names; the "[...]" placeholders stay unpublished. */
+export const publishedTeam = companyInfo.team.filter(
+  (member) => !member.name.startsWith("[")
+);

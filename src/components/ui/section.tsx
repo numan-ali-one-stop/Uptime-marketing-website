@@ -17,10 +17,15 @@ function Section({
     <section
       id={id}
       data-slot="section"
-      className={cn("py-20 md:py-28 lg:py-32", className)}
+      className={cn("py-14 md:py-20 lg:py-24", className)}
       {...props}
     >
-      <div className={cn("mx-auto max-w-7xl px-6 lg:px-8", containerClassName)}>
+      <div
+        className={cn(
+          "mx-auto max-w-7xl px-5 sm:px-6 lg:px-8",
+          containerClassName
+        )}
+      >
         {children}
       </div>
     </section>

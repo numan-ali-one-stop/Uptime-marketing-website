@@ -4,19 +4,21 @@ import { AnimatedGroup } from "@/components/ui/animated-group";
 import { CTAButton } from "@/components/ui/cta-button";
 import { GradientText } from "@/components/ui/gradient-text";
 import { Section } from "@/components/ui/section";
+import { SectionImage } from "@/components/ui/section-image";
+import type { Photo } from "@/data/photos";
 import { cn } from "@/lib/utils";
 
-import { Checklist } from "./checklist";
+import { Checklist, type ChecklistItem } from "./checklist";
 
 type SplitSectionProps = {
   id?: string;
   eyebrow: string;
   heading: string;
   body: string;
-  checklistItems: string[];
+  checklistItems: ChecklistItem[];
   ctaLabel: string;
   ctaHref: string;
-  visual: React.ReactNode;
+  photo: Photo;
   visualPosition?: "left" | "right";
   className?: string;
 };
@@ -29,16 +31,16 @@ function SplitSection({
   checklistItems,
   ctaLabel,
   ctaHref,
-  visual,
+  photo,
   visualPosition = "right",
   className,
 }: SplitSectionProps) {
   return (
     <Section id={id} className={cn("bg-bg-base", className)}>
-      <AnimatedGroup className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
+      <AnimatedGroup className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-16">
         <div
           className={cn(
-            "flex flex-col items-start gap-5",
+            "flex min-w-0 flex-col items-start gap-5",
             visualPosition === "left" && "lg:order-2"
           )}
         >
@@ -54,7 +56,11 @@ function SplitSection({
         </div>
 
         <div className={cn(visualPosition === "left" && "lg:order-1")}>
-          {visual}
+          <SectionImage
+            photo={photo}
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="aspect-[16/10] lg:aspect-[4/3]"
+          />
         </div>
       </AnimatedGroup>
     </Section>

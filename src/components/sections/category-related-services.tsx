@@ -31,20 +31,20 @@ function CategoryRelatedServices({
         className="mx-auto"
       />
 
-      <AnimatedGroup className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <AnimatedGroup className="mt-10 md:mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {relatedCategories.map((category) => {
           const Icon = getIcon(category.icon);
           return (
+            <div key={category.slug}>
             <Link
-              key={category.slug}
               href={`/services/${category.slug}`}
-              className="group"
+              className="group block h-full"
             >
-              <Card className="h-full p-6">
+              <Card className="h-full gap-3 p-6">
                 <div className="flex size-12 items-center justify-center rounded-xl bg-[linear-gradient(135deg,color-mix(in_oklab,var(--accent)_18%,transparent)_0%,color-mix(in_oklab,var(--accent-secondary)_18%,transparent)_100%)]">
                   <Icon className="text-accent size-6" aria-hidden="true" />
                 </div>
-                <h3 className="mt-2">{category.title}</h3>
+                <h3>{category.title}</h3>
                 <p className="text-text-secondary text-sm">
                   {category.tagline}
                 </p>
@@ -57,6 +57,7 @@ function CategoryRelatedServices({
                 </span>
               </Card>
             </Link>
+            </div>
           );
         })}
       </AnimatedGroup>

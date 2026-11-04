@@ -17,7 +17,7 @@ const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    template: "%s | UPTIME MARKETING",
+    template: "%s | Uptime Marketing",
     default: `${siteConfig.name} | ${siteConfig.tagline}`,
   },
   description: siteConfig.description,
@@ -43,9 +43,8 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  // Icons are handled by the app/icon.tsx, app/apple-icon.tsx and
-  // app/favicon.ico file conventions, which Next.js picks up and links
-  // automatically — no explicit `icons` field needed here.
+  // Icons are handled by the app/icon.tsx and app/apple-icon.tsx file
+  // conventions, which Next.js picks up and links automatically.
 };
 
 export default function RootLayout({

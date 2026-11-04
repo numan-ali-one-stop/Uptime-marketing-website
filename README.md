@@ -80,9 +80,10 @@ All editable business content lives in `src/data/*.ts`, fully typed against `src
 | Company/About page content — founding year, team members, stats | `src/data/company.ts` |
 | Homepage-wide FAQ section | `src/data/faqs.ts` |
 | Client testimonials | `src/data/testimonials.ts` |
+| Live page, category and service photos | `src/data/photos.ts` — hotlinked Unsplash URLs used by the hero and section images |
 | Per-service card/hero images | `src/data/service-images.ts` — maps a service slug to `/public/images/*` paths; until a real image is supplied there, the site automatically falls back to a gradient placeholder, so nothing breaks if you add a new service without an image yet |
 
-Files with a `PLACEHOLDER CONTENT` comment block at the top (`data/projects.ts`, `data/testimonials.ts`, `data/company.ts`) contain fictional/example content that **must** be replaced before launch — see `DEPLOYMENT_CHECKLIST.md`.
+Files with a `PLACEHOLDER CONTENT` comment block at the top (`data/testimonials.ts`, `data/company.ts`) contain fictional/example content that **must** be replaced before launch — see `DEPLOYMENT_CHECKLIST.md`.
 
 ### Legal pages
 

@@ -34,10 +34,10 @@ function CategoryJumpNav({ categories }: CategoryJumpNavProps) {
   }, [categories]);
 
   return (
-    <div className="bg-bg-base/80 border-border sticky top-20 z-40 border-b backdrop-blur-xl">
+    <div className="bg-bg-base/80 border-border sticky top-16 z-40 lg:top-20 border-b backdrop-blur-xl">
       <nav
         aria-label="Service categories"
-        className="mx-auto flex max-w-7xl gap-2 overflow-x-auto px-6 py-3 [-ms-overflow-style:none] [scrollbar-width:none] lg:justify-center lg:gap-4 lg:px-8 [&::-webkit-scrollbar]:hidden"
+        className="mx-auto flex max-w-7xl gap-2 overflow-x-auto px-5 py-3 sm:px-6 [-ms-overflow-style:none] [scrollbar-width:none] lg:justify-center lg:gap-4 lg:px-8 [&::-webkit-scrollbar]:hidden"
       >
         {categories.map((category) => {
           const isActive = activeSlug === category.slug;
